@@ -161,8 +161,6 @@ if __name__ == "__main__":
                     (idx, df[df.iloc[:, 0] == array_entry].index[0])
                 )
 
-        if idx == 4:
-            break
 
     # Name the entity (lookup) tables.
     genre_table = dataframe_dict["Genre"].copy()
