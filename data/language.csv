@@ -1,194 +1,194 @@
 LanguageID,LanguageName
-1,fulah
-2,burmese
-3,central american indian languages
-4,sign languages
-5,tarahumara
-6,romanian
-7,quechua
-8,czech
-9,algonquin
-10,indonesian
-11,vietnamese
-12,croatian
-13,amharic
-14,ibo
-15,aramaic
-16,egyptian (ancient)
-17,catalan
-18,tibetan
-19,ukrainian
-20,uzbek
+1,scanian
+2,wolof
+3,afrikaans
+4,faroese
+5,hausa
+6,bable
+7,sanskrit
+8,icelandic
+9,manipuri
+10,khmer
+11,hebrew
+12,tlingit
+13,american sign language
+14,aramaic
+15,malinka
+16,sindarin
+17,finnish
+18,japanese sign language
+19,dinka
+20,zulu
 21,maya
-22,shanghainese
-23,mapudungun
-24,apache languages
-25,kikuyu
-26,malayalam
-27,chaozhou
-28,esperanto
-29,syriac
-30,kurdish
-31,polynesian
-32,swahili
-33,punjabi
-34,chechen
-35,old english
-36,sindarin
-37,assamese
-38,faroese
-39,swedish
-40,chinese
-41,french sign language
-42,welsh
-43,armenian
-44,bulgarian
-45,russian
-46,bengali
-47,yoruba
-48,kinyarwanda
-49,scanian
-50,wolof
-51,kannada
-52,telugu
-53,inuktitut
-54,nepali
-55,manipuri
-56,icelandic
-57,berber languages
-58,thai
-59,korean sign language
-60,north american indian
-61,awadhi
-62,mixtec
-63,mandarin
-64,tok pisin
-65,bosnian
-66,greek
-67,min nan
-68,brazilian sign language
-69,pushto
-70,japanese
-71,xhosa
-72,afrikaans
-73,maori
-74,azerbaijani
-75,serbian
-76,kriolu
-77,dutch
-78,polish
-79,east-greenlandic
-80,cree
-81,malinka
-82,none
-83,danish
-84,lao
-85,breton
-86,ancient (to 1453)
-87,old
-88,uighur
-89,bhojpuri
-90,spanish
-91,mohawk
-92,dari
-93,kazakh
-94,turkmen
-95,marathi
-96,arabic
-97,scots
-98,klingon
-99,lingala
-100,quenya
-101,swiss german
-102,aromanian
-103,maltese
-104,english
-105,tatar
+22,tarahumara
+23,quenya
+24,pawnee
+25,tatar
+26,kurdish
+27,teochew
+28,min nan
+29,algonquin
+30,welsh
+31,polish
+32,haitian
+33,awadhi
+34,georgian
+35,sign languages
+36,spanish
+37,tupi
+38,hindi
+39,yoruba
+40,filipino
+41,azerbaijani
+42,aragonese
+43,bosnian
+44,turkmen
+45,apache languages
+46,flemish
+47,occitan
+48,lingala
+49,tamil
+50,swahili
+51,malay
+52,tswana
+53,czech
+54,parsee
+55,saami
+56,chaozhou
+57,arabic
+58,estonian
+59,luxembourgish
+60,akan
+61,belarusian
+62,kinyarwanda
+63,shanghainese
+64,nahuatl
+65,tajik
+66,uighur
+67,romany
+68,tibetan
+69,quechua
+70,maori
+71,aromanian
+72,slovak
+73,cheyenne
+74,korean
+75,portuguese
+76,xhosa
+77,kikuyu
+78,gallegan
+79,somali
+80,central american indian languages
+81,mohawk
+82,danish
+83,klingon
+84,navajo
+85,scottish gaelic
+86,assamese
+87,turkish
+88,dari
+89,mongolian
+90,pushto
+91,ibo
+92,scots
+93,berber languages
+94,east-greenlandic
+95,bengali
+96,mapudungun
+97,serbian
+98,north american indian
+99,none
+100,mixtec
+101,norse
+102,marathi
+103,shoshoni
+104,korean sign language
+105,vietnamese
 106,serbo-croatian
-107,tulu
-108,finnish
-109,hindi
-110,akan
-111,portuguese
-112,luxembourgish
-113,tagalog
-114,hausa
-115,latin
-116,nyanja
-117,british sign language
-118,spanish sign language
-119,shoshoni
-120,hmong
-121,italian
-122,hebrew
+107,norwegian
+108,neapolitan
+109,hokkien
+110,basque
+111,old english
+112,hawaiian
+113,nan
+114,gujarati
+115,amharic
+116,albanian
+117,english
+118,slovenian
+119,thai
+120,hungarian
+121,hmong
+122,tagalog
 123,nama
-124,pawnee
-125,persian
-126,hungarian
-127,norse
-128,norwegian
-129,estonian
-130,cantonese
-131,parsee
-132,romany
-133,irish
-134,malay
-135,acholi
-136,cheyenne
-137,tamil
-138,tswana
-139,hawaiian
-140,nan
-141,sioux
-142,slovak
-143,american sign language
-144,wayuu
-145,lithuanian
-146,mongolian
-147,navajo
-148,sranan
-149,saami
-150,sanskrit
-151,mende
-152,hokkien
-153,hakka
-154,aboriginal
-155,urdu
-156,basque
-157,neapolitan
-158,belarusian
-159,nahuatl
-160,gujarati
-161,aragonese
-162,gallegan
-163,korean
-164,filipino
-165,french
-166,somali
-167,flemish
-168,papiamento
-169,sicilian
-170,sinhalese
-171,dinka
-172,divehi
-173,tlingit
-174,greenlandic
-175,yiddish
-176,turkish
-177,slovenian
-178,khmer
-179,cornish
-180,teochew
-181,albanian
-182,latvian
-183,georgian
-184,haitian
-185,scottish gaelic
-186,german
-187,tupi
-188,japanese sign language
-189,zulu
-190,occitan
-191,tajik
-192,southern sotho
-193,bable
+124,mandarin
+125,swiss german
+126,french
+127,indonesian
+128,greenlandic
+129,lithuanian
+130,kazakh
+131,egyptian (ancient)
+132,southern sotho
+133,italian
+134,inuktitut
+135,persian
+136,telugu
+137,latvian
+138,divehi
+139,cantonese
+140,russian
+141,german
+142,cornish
+143,spanish sign language
+144,aboriginal
+145,armenian
+146,maltese
+147,breton
+148,greek
+149,french sign language
+150,kriolu
+151,croatian
+152,swedish
+153,esperanto
+154,brazilian sign language
+155,old
+156,tok pisin
+157,bhojpuri
+158,dutch
+159,sioux
+160,punjabi
+161,nepali
+162,yiddish
+163,fulah
+164,uzbek
+165,latin
+166,sranan
+167,mende
+168,hakka
+169,sinhalese
+170,sicilian
+171,chechen
+172,romanian
+173,british sign language
+174,ancient (to 1453)
+175,syriac
+176,papiamento
+177,nyanja
+178,japanese
+179,chinese
+180,acholi
+181,polynesian
+182,catalan
+183,kannada
+184,bulgarian
+185,burmese
+186,malayalam
+187,irish
+188,urdu
+189,ukrainian
+190,lao
+191,cree
+192,wayuu
+193,tulu

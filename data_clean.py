@@ -146,8 +146,21 @@ if __name__ == "__main__":
         "ProductionHouse": set(),
     }
 
+    media_links_list = []
+    media_trailer_list = []
+    has_link_list = []
+    has_trailer_list = []
     for idx, row in original_csv.iterrows():
         print(idx)
+
+        media_links_list.append(
+            row[["NetflixLink", "IMDbLink", "Image", "Poster"]].to_list()  # type: ignore
+        )
+        has_link_list.append([idx, idx])
+
+        media_trailer_list.append(row[["TMDbTrailer", "TrailerSite"]].tolist())
+        has_trailer_list.append([idx, idx])
+
         for parsable_entry in secondary_data.keys():
             array = [
                 entry.strip().lower() for entry in str(row[parsable_entry]).split(",")
@@ -161,7 +174,6 @@ if __name__ == "__main__":
                     (idx, df[df.iloc[:, 0] == array_entry].index[0])
                 )
 
-
     # Name the entity (lookup) tables.
     genre_table = dataframe_dict["Genre"].copy()
     tag_table = dataframe_dict["Tags"].copy()
@@ -171,6 +183,14 @@ if __name__ == "__main__":
     country_table = dataframe_dict["CountryAvailability"].copy()
     actor_table = dataframe_dict["Actors"].copy()
     production_house_table = dataframe_dict["ProductionHouse"].copy()
+
+    media_trailer_table = pd.DataFrame(
+        media_trailer_list, columns=["TMDbTrailer", "TrailerSite"]
+    )
+    media_links_table = pd.DataFrame(
+        media_links_list,
+        columns=[ "NetflixLink", "IMDbLink", "Image", "Poster"],
+    )
 
     genre_table.columns = ["GenreName"]
     tag_table.columns = ["TagName"]
@@ -207,6 +227,8 @@ if __name__ == "__main__":
         sorted(secondary_data["ProductionHouse"]),
         columns=["MediaID", "ProductionHouseID"],
     )
+    has_link_table = pd.DataFrame(has_link_list, columns=["MediaID", "LinkID"])
+    has_trailer_table = pd.DataFrame(has_trailer_list, columns=["MediaID", "TrailerID"])
 
     media_table.index += 1
     media_table.to_csv("media.csv", index=True, index_label="MediaID")
@@ -237,6 +259,12 @@ if __name__ == "__main__":
         "production_house.csv", index=True, index_label="ProductionHouseID"
     )
 
+    media_trailer_table.index += 1
+    media_trailer_table.to_csv("media_trailer.csv", index=True, index_label="TrailerID")
+
+    media_links_table.index += 1
+    media_links_table.to_csv("media_links.csv", index=True, index_label="LinkID")
+
     # Junction tables — IDs shifted to 1-based to match entity tables.
     for jt, name in [
         (has_genre_table, "has_genre"),
@@ -247,6 +275,8 @@ if __name__ == "__main__":
         (available_in_table, "available_in"),
         (acts_in_table, "acts_in"),
         (produces_table, "produces"),
+        (has_link_table, "has_link"),
+        (has_trailer_table, "has_trailer"),
     ]:
         jt["MediaID"] += 1
         jt.iloc[:, 1] += 1
