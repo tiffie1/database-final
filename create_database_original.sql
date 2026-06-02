@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS Media (
     MediaID INT PRIMARY KEY,
-    MediaType VARCHAR(6),
+    Title VARCHAR(150),
+    MediaType VARCHAR(10),
     HiddenGemScore FLOAT,
     MinMinutes INT,
     MaxMinutes INT,
@@ -15,14 +16,14 @@ CREATE TABLE IF NOT EXISTS Media (
     NetflixReleaseDate DATE,
     Summary VARCHAR(500),
     IMDbVotes FLOAT
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS MediaLinks (
     LinkID INT PRIMARY KEY,
-    NetflixLink VARCHAR(200),
-    IMDBLink VARCHAR(200),
-    Image VARCHAR(200),
-    Poster VARCHAR(200)
+    NetflixLink VARCHAR(500),
+    IMDBLink VARCHAR(500),
+    Image VARCHAR(500),
+    Poster VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS MediaTrailer (
@@ -72,8 +73,8 @@ CREATE TABLE IF NOT EXISTS Language (
 );
 
 CREATE TABLE IF NOT EXISTS Has_Genre (
-    GenreID INT,
     MediaID INT,
+    GenreID INT,
     PRIMARY KEY(GenreID, MediaID),
     FOREIGN KEY(GenreID) REFERENCES Genre(GenreID),
     FOREIGN KEY(MediaID) REFERENCES Media(MediaID)
