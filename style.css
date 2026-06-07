@@ -138,4 +138,23 @@ footer {
     table {
         font-size: 14px;
     }
+    .query-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+}
+
+pre {
+    background-color: #eeeeee;
+    padding: 12px;
+    border: 1px solid #ccc;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.error-text {
+    color: #991b1b;
+    font-weight: bold;
+}
 }

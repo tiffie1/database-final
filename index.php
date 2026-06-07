@@ -1,4 +1,6 @@
 <?php
+require_once "queries.php";
+
 $projectName = "Diseño de Base de Datos para Películas y Series";
 $course = "COMP4018-030";
 $professor = "Prof. Cesar F. Bolanos";
@@ -31,6 +33,7 @@ $student2 = "Emilia Couret Villafañe";
     <a href="#relaciones">Relaciones</a>
     <a href="#herencia">MediaType</a>
     <a href="#mejoras">Mejoras</a>
+    <a href="#queries">Queries</a>
     <a href="#conclusion">Conclusión</a>
 </nav>
 
@@ -505,6 +508,60 @@ $student2 = "Emilia Couret Villafañe";
             <li>Se mantuvo Media como entidad principal del sistema.</li>
         </ul>
     </section>
+
+    <section id="queries">
+    <h2>Queries relacionados con la aplicación</h2>
+
+    <p>
+        Esta sección muestra consultas SQL relacionadas con la base de datos. Se incluyen consultas
+        simples, una consulta con JOIN de tres tablas, consultas con agregación y una subconsulta.
+    </p>
+
+    <?php foreach ($queries as $query): ?>
+        <div class="query-box">
+            <h3><?php echo htmlspecialchars($query["titulo"]); ?></h3>
+
+            <p><?php echo htmlspecialchars($query["descripcion"]); ?></p>
+
+            <pre><?php echo htmlspecialchars($query["sql"]); ?></pre>
+
+            <?php
+            try {
+                $stmt = $pdo->query($query["sql"]);
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (count($rows) > 0) {
+                    echo "<table>";
+                    echo "<tr>";
+
+                    foreach (array_keys($rows[0]) as $column) {
+                        echo "<th>" . htmlspecialchars($column) . "</th>";
+                    }
+
+                    echo "</tr>";
+
+                    foreach ($rows as $row) {
+                        echo "<tr>";
+
+                        foreach ($row as $value) {
+                            echo "<td>" . htmlspecialchars($value) . "</td>";
+                        }
+
+                        echo "</tr>";
+                    }
+
+                    echo "</table>";
+                } else {
+                    echo "<p>No hay resultados para esta consulta.</p>";
+                }
+
+            } catch (PDOException $e) {
+                echo "<p class='error-text'>Error en la consulta: " . htmlspecialchars($e->getMessage()) . "</p>";
+            }
+            ?>
+        </div>
+    <?php endforeach; ?>
+</section>
 
     <section id="conclusion">
         <h2>Conclusión</h2>
