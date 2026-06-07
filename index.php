@@ -27,6 +27,7 @@ $student2 = "Emilia Couret Villafañe";
     <a href="#objetivo">Objetivo</a>
     <a href="#diagrama">Diagrama E/R</a>
     <a href="#entidades">Entidades</a>
+    <a href="#atributos">Atributos</a>
     <a href="#relaciones">Relaciones</a>
     <a href="#herencia">MediaType</a>
     <a href="#mejoras">Mejoras</a>
@@ -64,24 +65,38 @@ $student2 = "Emilia Couret Villafañe";
     </section>
 
     <section id="diagrama">
-        <h2>Diagrama Entidad-Relación</h2>
+    <h2>Diagramas del proyecto</h2>
 
-        <p>
-            El siguiente diagrama muestra la estructura general de la base de datos. La entidad
-            principal es <strong>Media</strong>, ya que representa cada película o serie dentro
-            del catálogo. Las demás entidades se conectan con Media para añadir información
-            adicional.
-        </p>
+    <h3>Diagrama Entidad-Relación</h3>
 
-        <div class="diagram">
-            <img src="assets/movie-er.png" alt="Diagrama Entidad-Relación">
-        </div>
+    <p>
+        El siguiente diagrama muestra la estructura general de la base de datos. La entidad
+        principal es <strong>Media</strong>, ya que representa cada película o serie dentro
+        del catálogo. Las demás entidades se conectan con Media para añadir información
+        adicional.
+    </p>
 
-        <p>
-            En el diagrama, las entidades aparecen como tablas, las relaciones aparecen con
-            diamantes y las conexiones muestran cómo se relacionan los datos.
-        </p>
-    </section>
+    <div class="diagram">
+        <img src="assets/movie-er.png" alt="Diagrama Entidad-Relación">
+    </div>
+
+    <p>
+        En el diagrama Entidad-Relación, las entidades aparecen como tablas, las relaciones
+        aparecen con diamantes y las conexiones muestran cómo se relacionan los datos.
+    </p>
+
+    <h3>Diagrama Relacional</h3>
+
+    <p>
+        El siguiente diagrama muestra cómo el modelo Entidad-Relación se convierte en tablas.
+        En este modelo se pueden observar las llaves primarias, llaves foráneas y las tablas
+        intermedias que representan las relaciones de muchos a muchos.
+    </p>
+
+    <div class="diagram">
+        <img src="assets/relational-model.png" alt="Diagrama Relacional">
+    </div>
+</section>
 
     <section id="entidades">
         <h2>Entidades principales</h2>
@@ -148,6 +163,243 @@ $student2 = "Emilia Couret Villafañe";
             </tr>
         </table>
     </section>
+
+    <section id="atributos">
+    <h2>Descripción de atributos</h2>
+
+    <p>
+        Esta sección describe los atributos más importantes de las entidades principales
+        y de las relaciones del modelo relacional. Los atributos permiten identificar,
+        clasificar y conectar la información almacenada en la base de datos.
+    </p>
+
+    <h3>Atributos de la entidad Media</h3>
+
+    <table>
+        <tr>
+            <th>Atributo</th>
+            <th>Descripción</th>
+        </tr>
+
+        <tr>
+            <td>MediaID</td>
+            <td>Llave primaria que identifica de manera única cada película o serie.</td>
+        </tr>
+
+        <tr>
+            <td>Title</td>
+            <td>Nombre o título del contenido.</td>
+        </tr>
+
+        <tr>
+            <td>MediaType</td>
+            <td>Indica si el contenido es una película o una serie.</td>
+        </tr>
+
+        <tr>
+            <td>MinMinutes</td>
+            <td>Duración mínima del contenido en minutos.</td>
+        </tr>
+
+        <tr>
+            <td>MaxMinutes</td>
+            <td>Duración máxima del contenido en minutos.</td>
+        </tr>
+
+        <tr>
+            <td>HiddenGemScore</td>
+            <td>Puntuación que representa qué tan recomendado o valioso puede ser el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>ViewRating</td>
+            <td>Clasificación del contenido según la audiencia recomendada.</td>
+        </tr>
+
+        <tr>
+            <td>IMDbScore</td>
+            <td>Puntuación del contenido según IMDb.</td>
+        </tr>
+
+        <tr>
+            <td>RottenTomatoesScore</td>
+            <td>Puntuación del contenido según Rotten Tomatoes.</td>
+        </tr>
+
+        <tr>
+            <td>MetacriticScore</td>
+            <td>Puntuación del contenido según Metacritic.</td>
+        </tr>
+
+        <tr>
+            <td>AwardsReceived</td>
+            <td>Cantidad de premios recibidos por el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>AwardsNominated</td>
+            <td>Cantidad de nominaciones recibidas por el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>BoxOffice</td>
+            <td>Información relacionada con ganancias o taquilla.</td>
+        </tr>
+
+        <tr>
+            <td>ReleaseDate</td>
+            <td>Fecha original de estreno del contenido.</td>
+        </tr>
+
+        <tr>
+            <td>NetflixReleaseDate</td>
+            <td>Fecha en que el contenido fue añadido a Netflix.</td>
+        </tr>
+
+        <tr>
+            <td>Summary</td>
+            <td>Resumen o descripción breve del contenido.</td>
+        </tr>
+
+        <tr>
+            <td>IMDbVotes</td>
+            <td>Cantidad de votos registrados en IMDb.</td>
+        </tr>
+    </table>
+
+    <h3>Atributos de entidades secundarias</h3>
+
+    <table>
+        <tr>
+            <th>Entidad</th>
+            <th>Atributos</th>
+            <th>Descripción</th>
+        </tr>
+
+        <tr>
+            <td>Genre</td>
+            <td>GenreID, GenreName</td>
+            <td>Guarda los géneros asociados al contenido.</td>
+        </tr>
+
+        <tr>
+            <td>Tag</td>
+            <td>TagID, TagName</td>
+            <td>Guarda etiquetas o palabras clave relacionadas con el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>Language</td>
+            <td>LanguageID, LanguageName</td>
+            <td>Guarda los idiomas asociados al contenido.</td>
+        </tr>
+
+        <tr>
+            <td>Country</td>
+            <td>CountryID, CountryName</td>
+            <td>Guarda los países donde el contenido está disponible o relacionado.</td>
+        </tr>
+
+        <tr>
+            <td>Director</td>
+            <td>DirectorID, DirectorName</td>
+            <td>Guarda los directores del contenido.</td>
+        </tr>
+
+        <tr>
+            <td>Writer</td>
+            <td>WriterID, WriterName</td>
+            <td>Guarda los escritores o guionistas del contenido.</td>
+        </tr>
+
+        <tr>
+            <td>Actor</td>
+            <td>ActorID, ActorName</td>
+            <td>Guarda los actores que participan en el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>ProductionHouse</td>
+            <td>ProductionHouseID, ProductionHouseName</td>
+            <td>Guarda las casas productoras asociadas al contenido.</td>
+        </tr>
+
+        <tr>
+            <td>MediaLinks</td>
+            <td>LinkID, NetflixLink, IMDbLink, Image, Poster</td>
+            <td>Guarda enlaces e imágenes relacionados con el contenido.</td>
+        </tr>
+
+        <tr>
+            <td>MediaTrailer</td>
+            <td>TrailerID, IMDbTrailer, TrailerSite</td>
+            <td>Guarda información relacionada con el trailer del contenido.</td>
+        </tr>
+    </table>
+
+    <h3>Atributos de relaciones en el modelo relacional</h3>
+
+    <p>
+        Las relaciones de muchos a muchos se convierten en tablas intermedias.
+        Estas tablas utilizan llaves foráneas para conectar las entidades principales.
+    </p>
+
+    <table>
+        <tr>
+            <th>Tabla de relación</th>
+            <th>Atributos</th>
+            <th>Descripción</th>
+        </tr>
+
+        <tr>
+            <td>Media_Genre</td>
+            <td>MediaID, GenreID</td>
+            <td>Conecta cada contenido con sus géneros.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Tag</td>
+            <td>MediaID, TagID</td>
+            <td>Conecta cada contenido con sus etiquetas.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Language</td>
+            <td>MediaID, LanguageID</td>
+            <td>Conecta cada contenido con sus idiomas.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Country</td>
+            <td>MediaID, CountryID</td>
+            <td>Conecta cada contenido con los países relacionados.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Director</td>
+            <td>MediaID, DirectorID</td>
+            <td>Conecta cada contenido con sus directores.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Writer</td>
+            <td>MediaID, WriterID</td>
+            <td>Conecta cada contenido con sus escritores.</td>
+        </tr>
+
+        <tr>
+            <td>Media_Actor</td>
+            <td>MediaID, ActorID</td>
+            <td>Conecta cada contenido con sus actores.</td>
+        </tr>
+
+        <tr>
+            <td>Media_ProductionHouse</td>
+            <td>MediaID, ProductionHouseID</td>
+            <td>Conecta cada contenido con sus casas productoras.</td>
+        </tr>
+    </table>
+</section>
 
     <section id="relaciones">
         <h2>Relaciones principales</h2>
