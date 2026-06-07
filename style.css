@@ -23,11 +23,12 @@ header p {
     margin: 6px;
 }
 
-/* Navigation bar */
+/* Navigation */
 nav {
     background-color: #d9e2ec;
     text-align: center;
     padding: 12px;
+    border-bottom: 1px solid #bbb;
 }
 
 nav a {
@@ -41,7 +42,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Main content */
+/* Main page */
 main {
     width: 85%;
     margin: 25px auto;
@@ -61,11 +62,6 @@ h2 {
     padding-bottom: 5px;
 }
 
-h3 {
-    color: #374151;
-    margin-top: 25px;
-}
-
 p {
     line-height: 1.6;
     text-align: justify;
@@ -75,7 +71,7 @@ ul {
     line-height: 1.7;
 }
 
-/* Diagrams */
+/* Diagram image */
 .diagram {
     text-align: center;
     margin-top: 20px;
@@ -114,84 +110,6 @@ tr:nth-child(even) {
     background-color: #f7f7f7;
 }
 
-/* Queries */
-.query-box {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 25px;
-    background-color: #fafafa;
-}
-
-pre {
-    background-color: #eeeeee;
-    padding: 12px;
-    border: 1px solid #ccc;
-    overflow-x: auto;
-    white-space: pre-wrap;
-}
-
-/* Forms */
-form {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 25px;
-    background-color: #fafafa;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid #999;
-    box-sizing: border-box;
-}
-
-button {
-    margin-top: 15px;
-    padding: 10px 18px;
-    background-color: #1f2937;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #374151;
-}
-
-/* Alerts */
-.alert {
-    width: 85%;
-    margin: 20px auto;
-    padding: 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.success {
-    background-color: #d1fae5;
-    color: #065f46;
-    border: 1px solid #10b981;
-}
-
-.error {
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #ef4444;
-}
-
-.error-text {
-    color: #991b1b;
-    font-weight: bold;
-}
-
 /* Footer */
 footer {
     background-color: #1f2937;
@@ -201,7 +119,7 @@ footer {
     margin-top: 30px;
 }
 
-/* Responsive */
+/* Small screens */
 @media screen and (max-width: 700px) {
     main {
         width: 95%;

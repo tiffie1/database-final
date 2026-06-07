@@ -24,9 +24,11 @@ $student2 = "Emilia Couret Villafañe";
 
 <nav>
     <a href="#introduccion">Introducción</a>
+    <a href="#objetivo">Objetivo</a>
     <a href="#diagrama">Diagrama E/R</a>
     <a href="#entidades">Entidades</a>
     <a href="#relaciones">Relaciones</a>
+    <a href="#herencia">MediaType</a>
     <a href="#mejoras">Mejoras</a>
     <a href="#conclusion">Conclusión</a>
 </nav>
