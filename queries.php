@@ -203,7 +203,7 @@ function validateField(string $col, string $rawValue, string $dbtype): ?string
 // PARA DERECK: "Pon los queries tuyos aqui." - Emi
 $queries = [
     [
-        "titulo" => "Query 1: Mostrar películas y series",
+        "label" => "Query 1: Mostrar películas y series",
         "descripcion" => "Esta consulta muestra información básica de los contenidos registrados en la tabla Media. Se usa LIMIT para mostrar solo algunos resultados.",
         "sql" => "
             SELECT MediaID, Title, MediaType, IMDbScore, ReleaseDate
@@ -213,7 +213,7 @@ $queries = [
     ],
 
     [
-        "titulo" => "Query 2: JOIN de tres tablas",
+        "label" => "Query 2: JOIN de tres tablas",
         "descripcion" => "Esta consulta usa JOIN para conectar Media, Has_Genre y Genre. Muestra cada contenido con su género.",
         "sql" => "
             SELECT Media.Title, Media.MediaType, Genre.GenreName
@@ -225,7 +225,7 @@ $queries = [
     ],
 
     [
-        "titulo" => "Query 3: Cantidad de contenidos por tipo",
+        "label" => "Query 3: Cantidad de contenidos por tipo",
         "descripcion" => "Esta consulta usa GROUP BY para contar cuántas películas y series hay en la base de datos.",
         "sql" => "
             SELECT MediaType, COUNT(*) AS Total
@@ -236,7 +236,7 @@ $queries = [
     ],
 
     [
-        "titulo" => "Query 4: Géneros con más de un contenido",
+        "label" => "Query 4: Géneros con más de un contenido",
         "descripcion" => "Esta consulta usa GROUP BY y HAVING para mostrar los géneros que aparecen en más de un contenido.",
         "sql" => "
             SELECT Genre.GenreName, COUNT(Has_Genre.MediaID) AS TotalContent
@@ -248,10 +248,10 @@ $queries = [
         "
     ],
 
-   [
-    "titulo" => "Query 5: Contenidos con puntuación mayor al promedio",
-    "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDBScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
-    "sql" => "
+    [
+        "label" => "Query 5: Contenidos con puntuación mayor al promedio",
+        "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDBScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
+        "sql" => "
         SELECT 
             Title, 
             MediaType, 
@@ -264,7 +264,7 @@ $queries = [
         )
         LIMIT 10
     "
-]
+    ]
 ];
 
 /* =========================================================
