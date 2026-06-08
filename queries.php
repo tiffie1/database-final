@@ -2,6 +2,12 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+/*==================================================================
+   Esto evita que mysqli rompa la página con errores fatales.
+   En vez de crashear, la página puede mostrar un mensaje de error.
+*================================================================== */
+mysqli_report(MYSQLI_REPORT_OFF);
+
 $conn = mysqli_connect("localhost", "root", "", "MovieData");
 
 if (!$conn) {
