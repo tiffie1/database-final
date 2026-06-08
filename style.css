@@ -6,6 +6,7 @@ body {
     padding: 0;
 }
 
+/* Header */
 header {
     background-color: #1f2937;
     color: white;
@@ -14,23 +15,26 @@ header {
 }
 
 header h1 {
-    margin-bottom: 5px;
+    margin: 0;
+    font-size: 28px;
 }
 
 header p {
-    margin: 5px;
+    margin: 6px;
 }
 
+/* Navigation */
 nav {
     background-color: #d9e2ec;
     text-align: center;
     padding: 12px;
+    border-bottom: 1px solid #bbb;
 }
 
 nav a {
     color: #1f2937;
     text-decoration: none;
-    margin: 0 12px;
+    margin: 0 10px;
     font-weight: bold;
 }
 
@@ -38,6 +42,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Main page */
 main {
     width: 85%;
     margin: 25px auto;
@@ -46,8 +51,9 @@ main {
     border: 1px solid #ccc;
 }
 
+/* Sections */
 section {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 h2 {
@@ -65,9 +71,11 @@ ul {
     line-height: 1.7;
 }
 
+/* Diagram image */
 .diagram {
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .diagram img {
@@ -78,10 +86,12 @@ ul {
     background-color: white;
 }
 
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 th {
@@ -93,12 +103,58 @@ th, td {
     border: 1px solid #999;
     padding: 10px;
     text-align: left;
+    vertical-align: top;
 }
 
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+/* Footer */
 footer {
     background-color: #1f2937;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 30px;
+}
+
+/* Small screens */
+@media screen and (max-width: 700px) {
+    main {
+        width: 95%;
+        padding: 15px;
+    }
+
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+    .query-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+}
+
+pre {
+    background-color: #eeeeee;
+    padding: 12px;
+    border: 1px solid #ccc;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.error-text {
+    color: #991b1b;
+    font-weight: bold;
+}
 }

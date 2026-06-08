@@ -1,4 +1,6 @@
 <?php
+require_once "queries.php";
+
 $projectName = "Diseño de Base de Datos para Películas y Series";
 $course = "COMP4018-030";
 $professor = "Prof. Cesar F. Bolanos";
