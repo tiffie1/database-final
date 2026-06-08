@@ -1,5 +1,5 @@
 <?php
-require_once "queries.php";
+//require_once "queries.php";
 
 $projectName = "Diseño de Base de Datos para Películas y Series";
 $course = "COMP4018-030";
@@ -74,7 +74,7 @@ $student2 = "Emilia Couret Villafañe";
                 adicional.
             </p>
             <div class="diagram">
-                <img src="./movie-ER.svg" alt="Diagrama Entidad-Relación">
+                <img src="assets/movie-ER.svg" alt="Diagrama Entidad-Relación">
             </div>
             <p>
                 En el diagrama, las entidades aparecen como tablas, las relaciones aparecen con
