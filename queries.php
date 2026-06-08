@@ -4,39 +4,146 @@
  * -----------
  * Esta página tiene dos funciones principales:
  *   1. Ejecutar queries predefinidas y mostrar los resultados en tabla.
- *   2. Permitir insertar o modificar registros en la base de datos.
- *
- * La base de datos usada es MovieData corriendo en MariaDB/XAMPP local.
+ *   2. Permitir insertar registros en cualquier entidad de la base de datos.
  */
 
-/* =========================================================
- * CONEXIÓN A LA BASE DE DATOS
- * ---------------------------------------------------------
- * mysqli_connect() recibe: host, usuario, contraseña, nombre de BD.
- * En XAMPP local el usuario por defecto es root sin contraseña.
- * Si le pusiste contraseña en mariadb-secure-installation,
- * cámbiala aquí.
- * ========================================================= */
 $conn = mysqli_connect("localhost", "root", "", "MovieData");
 
-// Si la conexión falla, se detiene todo y se muestra el error.
 if (!$conn) {
     die("<p>Error de conexión: " . mysqli_connect_error() . "</p>");
 }
 
-// Establecer UTF-8 para que caracteres especiales (japonés, turco, etc.)
-// se lean y escriban correctamente.
 mysqli_set_charset($conn, "utf8mb4");
 
 /* =========================================================
- * QUERIES PREDEFINIDAS
+ * DEFINICIÓN DE ENTIDADES Y SUS CAMPOS
  * ---------------------------------------------------------
- * Cada entrada del arreglo tiene:
- *   "label" -> lo que ve el usuario en el dropdown
- *   "sql"   -> el query que se ejecuta (solo los primeros 10
- *              resultados via LIMIT 10)
- * Reemplaza estos queries con los tuyos reales.
+ * Cada entidad tiene:
+ *   "table"  -> nombre exacto de la tabla en MariaDB
+ *   "id"     -> nombre de la columna PRI (se excluye del
+ *               formulario porque es AUTO_INCREMENT)
+ *   "fields" -> arreglo de campos insertables. Cada campo:
+ *       "col"      -> nombre de columna en la tabla
+ *       "label"    -> etiqueta legible para el usuario
+ *       "type"     -> tipo de input HTML
+ *       "required" -> si es obligatorio en el formulario
  * ========================================================= */
+$entities = [
+
+    "Media" => [
+        "table"  => "Media",
+        "id"     => "MediaID",
+        "fields" => [
+            ["col" => "Title",              "label" => "Título",                    "type" => "text",   "required" => true],
+            ["col" => "MediaType",          "label" => "Tipo (movie / series)",     "type" => "text",   "required" => false],
+            ["col" => "HiddenGemScore",     "label" => "Hidden Gem Score",          "type" => "number", "required" => false],
+            ["col" => "MinMinutes",         "label" => "Duración mínima (mins)",    "type" => "number", "required" => false],
+            ["col" => "MaxMinutes",         "label" => "Duración máxima (mins)",    "type" => "number", "required" => false],
+            ["col" => "ViewRating",         "label" => "View Rating (ej. PG-13)",   "type" => "text",   "required" => false],
+            ["col" => "IMDbScore",          "label" => "Puntuación IMDb",           "type" => "number", "required" => false],
+            ["col" => "RottenTomatoesScore","label" => "Rotten Tomatoes Score",     "type" => "number", "required" => false],
+            ["col" => "MetacriticScore",    "label" => "Metacritic Score",          "type" => "number", "required" => false],
+            ["col" => "AwardsReceived",     "label" => "Premios Recibidos",         "type" => "number", "required" => false],
+            ["col" => "AwardsNominated",    "label" => "Nominaciones",              "type" => "number", "required" => false],
+            ["col" => "BoxOffice",          "label" => "Box Office (USD)",          "type" => "number", "required" => false],
+            ["col" => "ReleaseDate",        "label" => "Fecha de estreno",          "type" => "date",   "required" => false],
+            ["col" => "NetflixReleaseDate", "label" => "Fecha estreno en Netflix",  "type" => "date",   "required" => false],
+            ["col" => "Summary",            "label" => "Resumen",                   "type" => "text",   "required" => false],
+            ["col" => "IMDbVotes",          "label" => "Votos IMDb",                "type" => "number", "required" => false],
+        ]
+    ],
+
+    "MediaLinks" => [
+        "table"  => "MediaLinks",
+        "id"     => "LinkID",
+        "fields" => [
+            ["col" => "NetflixLink", "label" => "Enlace Netflix",  "type" => "text", "required" => false],
+            ["col" => "IMDBLink",    "label" => "Enlace IMDb",     "type" => "text", "required" => false],
+            ["col" => "Image",       "label" => "URL de imagen",   "type" => "text", "required" => false],
+            ["col" => "Poster",      "label" => "URL de póster",   "type" => "text", "required" => false],
+        ]
+    ],
+
+    "MediaTrailer" => [
+        "table"  => "MediaTrailer",
+        "id"     => "TrailerID",
+        "fields" => [
+            ["col" => "IMDbTrailer", "label" => "URL Trailer IMDb", "type" => "text", "required" => false],
+            ["col" => "TrailerSite", "label" => "Sitio del Trailer", "type" => "text", "required" => false],
+        ]
+    ],
+
+    // Para todas las entidades simples de dos columnas,
+    // el patrón es idéntico: solo el ID (excluido) y el nombre.
+    "Actor" => [
+        "table"  => "Actor",
+        "id"     => "ActorID",
+        "fields" => [
+            ["col" => "ActorName", "label" => "Nombre del Actor", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Country" => [
+        "table"  => "Country",
+        "id"     => "CountryID",
+        "fields" => [
+            ["col" => "CountryName", "label" => "Nombre del País", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Director" => [
+        "table"  => "Director",
+        "id"     => "DirectorID",
+        "fields" => [
+            ["col" => "DirectorName", "label" => "Nombre del Director", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Genre" => [
+        "table"  => "Genre",
+        "id"     => "GenreID",
+        "fields" => [
+            ["col" => "GenreName", "label" => "Nombre del Género", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Language" => [
+        "table"  => "Language",
+        "id"     => "LanguageID",
+        "fields" => [
+            ["col" => "LanguageName", "label" => "Nombre del Idioma", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "ProductionHouse" => [
+        "table"  => "ProductionHouse",
+        "id"     => "ProductionHouseID",
+        "fields" => [
+            ["col" => "ProductionHouseName", "label" => "Nombre de la Productora", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Tag" => [
+        "table"  => "Tag",
+        "id"     => "TagID",
+        "fields" => [
+            ["col" => "TagName", "label" => "Nombre del Tag", "type" => "text", "required" => true],
+        ]
+    ],
+
+    "Writer" => [
+        "table"  => "Writer",
+        "id"     => "WriterID",
+        "fields" => [
+            ["col" => "WriterName", "label" => "Nombre del Escritor", "type" => "text", "required" => true],
+        ]
+    ],
+];
+
+/* =========================================================
+ * QUERIES PREDEFINIDAS
+ * ========================================================= */
+// PARA DERECK: "Pon los queries tuyos aqui." - Emi
 $queries = [
     [
         "label" => "1. Ver primeras 10 películas",
@@ -77,76 +184,90 @@ $queries = [
 
 /* =========================================================
  * MANEJO DEL DROPDOWN DE QUERIES
- * ---------------------------------------------------------
- * Cuando el usuario selecciona un query y hace clic en
- * "Ejecutar", el formulario envía el índice del query
- * seleccionado via POST. Aquí se recibe y se ejecuta.
  * ========================================================= */
-$queryResults  = null;  // Guardará las filas del resultado
-$queryError    = null;  // Guardará el error si falla el query
-$selectedQuery = -1;    // Índice del query seleccionado
+$queryResults  = null;
+$queryError    = null;
+$selectedQuery = -1;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["query_index"])) {
 
     $selectedQuery = (int) $_POST["query_index"];
 
-    // Verificar que el índice sea válido antes de ejecutar
     if ($selectedQuery >= 0 && $selectedQuery < count($queries)) {
 
         $sql    = $queries[$selectedQuery]["sql"];
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            // mysqli_fetch_all devuelve todas las filas como arreglo asociativo
             $queryResults = mysqli_fetch_all($result, MYSQLI_ASSOC);
             mysqli_free_result($result);
         } else {
-            // Si el query falla (ej. tabla no existe), guardar el mensaje de error
             $queryError = mysqli_error($conn);
         }
     }
 }
 
 /* =========================================================
- * MANEJO DEL FORMULARIO DE INSERCIÓN / MODIFICACIÓN
+ * MANEJO DEL FORMULARIO DE INSERCIÓN
  * ---------------------------------------------------------
- * El formulario de abajo envía los datos de una nueva
- * película via POST con action="insert". Aquí se reciben,
- * se sanitizan, y se insertan en Media.
+ * Cuando se envía el formulario de inserción, el POST
+ * incluye:
+ *   "action"        -> siempre "insert"
+ *   "entity"        -> clave del arreglo $entities (ej. "Actor")
+ *   un campo por cada "col" definida en $entities[entity]["fields"]
  *
- * mysqli_real_escape_string() previene SQL injection
- * escapando caracteres peligrosos en los strings.
- *
- * Si la base de datos tiene restricciones (NOT NULL,
- * FOREIGN KEY, CHECK, etc.), MariaDB devolverá un error
- * que se captura y muestra al usuario.
+ * Se construye el INSERT dinámicamente recorriendo los
+ * fields de la entidad seleccionada, para no tener que
+ * escribir un INSERT distinto por cada tabla.
  * ========================================================= */
-$insertSuccess = null;
-$insertError   = null;
+$insertSuccess  = null;
+$insertError    = null;
+// Mantener qué entidad estaba seleccionada al recargar
+// para que el formulario no se resetee tras un insert.
+$selectedEntity = array_key_first($entities);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "insert") {
 
-    // Sanitizar cada campo recibido del formulario.
-    // mysqli_real_escape_string escapa comillas y otros caracteres especiales.
-    $title    = mysqli_real_escape_string($conn, trim($_POST["title"]));
-    $type     = mysqli_real_escape_string($conn, trim($_POST["media_type"]));
-    $score    = mysqli_real_escape_string($conn, trim($_POST["imdb_score"]));
-    $release  = mysqli_real_escape_string($conn, trim($_POST["release_date"]));
+    // Validar que la entidad recibida exista en nuestro arreglo
+    // (nunca confiar en datos del usuario directamente en SQL).
+    if (isset($_POST["entity"]) && array_key_exists($_POST["entity"], $entities)) {
 
-    // Construir el INSERT. Los campos que no están en el formulario
-    // se dejan como NULL. Añade más columnas según necesites.
-    $insertSQL = "INSERT INTO Media (Title, MediaType, IMDbScore, ReleaseDate)
-                  VALUES ('$title', '$type', 
-                          " . ($score === "" ? "NULL" : "'$score'") . ",
-                          " . ($release === "" ? "NULL" : "'$release'") . ")";
+        $selectedEntity = $_POST["entity"];
+        $entityDef      = $entities[$selectedEntity];
 
-    if (mysqli_query($conn, $insertSQL)) {
-        // mysqli_insert_id() devuelve el ID autogenerado del nuevo registro
-        $insertSuccess = "Registro insertado correctamente con ID: " . mysqli_insert_id($conn);
+        $cols   = [];  // Nombres de columnas para el INSERT
+        $vals   = [];  // Valores sanitizados para el INSERT
+
+        foreach ($entityDef["fields"] as $field) {
+
+            $col      = $field["col"];
+            $rawValue = isset($_POST[$col]) ? trim($_POST[$col]) : "";
+
+            // Si el campo llegó vacío, insertar NULL en vez de string vacío,
+            // así respetamos las restricciones numéricas y de fecha de MariaDB.
+            if ($rawValue === "") {
+                $cols[] = "`$col`";
+                $vals[] = "NULL";
+            } else {
+                // Escapar para prevenir SQL injection
+                $escaped = mysqli_real_escape_string($conn, $rawValue);
+                $cols[]  = "`$col`";
+                $vals[]  = "'$escaped'";
+            }
+        }
+
+        // Construir y ejecutar el INSERT dinámico
+        $colList = implode(", ", $cols);
+        $valList = implode(", ", $vals);
+        $insertSQL = "INSERT INTO `{$entityDef['table']}` ($colList) VALUES ($valList)";
+
+        if (mysqli_query($conn, $insertSQL)) {
+            $insertSuccess = "Registro insertado en {$selectedEntity} con ID: " . mysqli_insert_id($conn);
+        } else {
+            $insertError = mysqli_error($conn);
+        }
     } else {
-        // Si MariaDB rechaza el insert (por restricciones, tipos incorrectos, etc.)
-        // se muestra el error exacto de la base de datos
-        $insertError = mysqli_error($conn);
+        $insertError = "Entidad no válida.";
     }
 }
 ?>
@@ -165,8 +286,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
     <header>
         <h1>Consultas y Gestión de Datos</h1>
         <nav>
-            <!-- Botón para regresar al index principal -->
-            <a href="index.php">← Volver al Informe</a>
+            <a href="index.php">
+                <font color='#256BEF'><u>← Volver al Informe</u></font>
+            </a>
         </nav>
     </header>
 
@@ -180,11 +302,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
             <p>Selecciona un query del menú y haz clic en <strong>Ejecutar</strong>
                 para ver los primeros 10 resultados.</p>
 
-            <!--
-                Formulario del dropdown.
-                method="POST" envía los datos al mismo archivo (action="").
-                El select envía el índice numérico del query seleccionado.
-            -->
             <form method="POST" action="">
                 <select name="query_index">
                     <?php foreach ($queries as $i => $q): ?>
@@ -194,23 +311,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
                         </option>
                     <?php endforeach; ?>
                 </select>
-
                 <button type="submit">Ejecutar</button>
             </form>
 
             <?php if ($queryError !== null): ?>
-                <!-- Mostrar error si el query falló -->
                 <p style="color:red;">Error en el query: <?php echo htmlspecialchars($queryError); ?></p>
 
             <?php elseif ($queryResults !== null): ?>
                 <?php if (count($queryResults) === 0): ?>
                     <p>El query no devolvió resultados.</p>
                 <?php else: ?>
-                    <!--
-                        Construir la tabla dinámicamente.
-                        Los encabezados se sacan de las claves del primer resultado
-                        para que funcione con cualquier query sin hardcodear columnas.
-                    -->
                     <table>
                         <tr>
                             <?php foreach (array_keys($queryResults[0]) as $col): ?>
@@ -230,46 +340,70 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
         </section>
 
         <!-- =====================================================
-             SECCIÓN 2: INSERTAR / MODIFICAR REGISTROS
+             SECCIÓN 2: INSERTAR REGISTROS
+             ---------------------------------------------------------
+             El dropdown de entidad controla qué campos se muestran
+             via JavaScript. Todos los campos de todas las entidades
+             están en el HTML, pero solo los de la entidad seleccionada
+             son visibles en un momento dado.
              ===================================================== -->
         <section id="insertar">
-            <h2>Insertar nuevo registro en Media</h2>
-            <p>Completa los campos y haz clic en <strong>Insertar</strong>.
-                Si algún valor viola las restricciones de la base de datos,
-                se mostrará el error correspondiente.</p>
+            <h2>Insertar nuevo registro</h2>
+            <p>Selecciona la entidad, completa los campos y haz clic en
+                <strong>Insertar</strong>. Los errores de la base de datos
+                se mostrarán debajo del formulario.</p>
 
-            <!--
-                El campo oculto "action" con valor "insert" le dice al PHP
-                de arriba que este POST es para insertar, no para ejecutar
-                un query. Así distinguimos los dos formularios.
-            -->
-            <form method="POST" action="">
+            <form method="POST" action="" id="insertForm">
                 <input type="hidden" name="action" value="insert">
 
-                <table>
-                    <tr>
-                        <td><label for="title">Título *</label></td>
-                        <td><input type="text" id="title" name="title" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="media_type">Tipo (Movie / Series)</label></td>
-                        <td>
-                            <select id="media_type" name="media_type">
-                                <option value="movie">Movie</option>
-                                <option value="series">Series</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="imdb_score">Puntuación IMDb</label></td>
-                        <td><input type="number" id="imdb_score" name="imdb_score"
-                                step="0.1" min="0" max="10"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="release_date">Fecha de estreno (YYYY-MM-DD)</label></td>
-                        <td><input type="date" id="release_date" name="release_date"></td>
-                    </tr>
-                </table>
+                <!-- Dropdown para seleccionar en qué tabla insertar -->
+                <label for="entitySelect"><strong>Entidad:</strong></label>
+                <select name="entity" id="entitySelect">
+                    <?php foreach ($entities as $key => $def): ?>
+                        <option value="<?php echo $key; ?>"
+                            <?php echo ($selectedEntity === $key) ? "selected" : ""; ?>>
+                            <?php echo htmlspecialchars($key); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
+                <br><br>
+
+                <!--
+                    Por cada entidad se genera un <div> con sus campos.
+                    El div tiene el id "fields-NombreEntidad".
+                    JavaScript muestra solo el div de la entidad activa
+                    y oculta los demás, así el servidor recibe solo
+                    los campos relevantes (los otros llegan vacíos
+                    pero como no pertenecen a la entidad seleccionada,
+                    el PHP los ignora al construir el INSERT).
+                -->
+                <?php foreach ($entities as $key => $def): ?>
+                    <div id="fields-<?php echo $key; ?>"
+                         style="display: <?php echo ($selectedEntity === $key) ? 'block' : 'none'; ?>;">
+                        <table>
+                            <?php foreach ($def["fields"] as $field): ?>
+                                <tr>
+                                    <td>
+                                        <label for="<?php echo $field['col']; ?>">
+                                            <?php echo htmlspecialchars($field['label']); ?>
+                                            <?php echo $field['required'] ? ' *' : ''; ?>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="<?php echo $field['type']; ?>"
+                                            id="<?php echo $field['col']; ?>"
+                                            name="<?php echo $field['col']; ?>"
+                                            <?php echo $field['required'] ? 'required' : ''; ?>
+                                            <?php echo $field['type'] === 'number' ? 'step="any"' : ''; ?>
+                                        >
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
+                <?php endforeach; ?>
 
                 <button type="submit">Insertar</button>
             </form>
@@ -289,11 +423,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
         <p>Proyecto de Base de Datos | <?php echo date("Y"); ?></p>
     </footer>
 
-</body>
+    <!--
+        JavaScript para mostrar/ocultar los campos según la entidad seleccionada.
+        Cuando el usuario cambia el dropdown, se ocultan todos los divs de campos
+        y se muestra solo el que corresponde a la entidad nueva.
+        Esto es puramente visual — el PHP del servidor decide qué insertar
+        basándose en el campo "entity" del POST, no en lo que esté visible.
+    -->
+    <script>
+        const entitySelect = document.getElementById('entitySelect');
 
+        // Lista de todas las entidades generada desde PHP para no hardcodearla en JS
+        const entityKeys = <?php echo json_encode(array_keys($entities)); ?>;
+
+        entitySelect.addEventListener('change', function () {
+            // Ocultar todos los divs de campos
+            entityKeys.forEach(function (key) {
+                document.getElementById('fields-' + key).style.display = 'none';
+            });
+            // Mostrar solo el div de la entidad seleccionada
+            document.getElementById('fields-' + this.value).style.display = 'block';
+        });
+    </script>
+
+</body>
 </html>
 
 <?php
-// Cerrar la conexión al final de la página.
 mysqli_close($conn);
 ?>
