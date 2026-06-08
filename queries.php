@@ -250,16 +250,16 @@ $queries = [
 
     [
         "label" => "Query 5: Contenidos con puntuación mayor al promedio",
-        "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDBScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
+        "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDbScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
         "sql" => "
         SELECT 
             Title, 
             MediaType, 
-            IMDBScore,
-            (SELECT ROUND(AVG(IMDBScore), 2) FROM Media) AS AverageIMDbScore
+            IMDbScore,
+            (SELECT ROUND(AVG(IMDbScore), 2) FROM Media) AS AverageIMDbScore
         FROM Media
-        WHERE IMDBScore > (
-            SELECT AVG(IMDBScore)
+        WHERE IMDbScore > (
+            SELECT AVG(IMDbScore)
             FROM Media
         )
         LIMIT 10
