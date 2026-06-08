@@ -1,4 +1,5 @@
 <?php
+require_once "actions.php";
 require_once "queries.php";
 
 $projectName = "Diseño de Base de Datos para Películas y Series";
@@ -34,8 +35,19 @@ $student2 = "Emilia Couret Villafañe";
     <a href="#herencia">MediaType</a>
     <a href="#mejoras">Mejoras</a>
     <a href="#queries">Queries</a>
+    <a href="#forms">Insertar/Modificar</a>
     <a href="#conclusion">Conclusión</a>
 </nav>
+
+<?php if (!empty($message)): ?>
+    <div class="alert <?php echo $messageType; ?>">
+        <?php echo htmlspecialchars($message); ?>
+    </div>
+
+    <script>
+        alert("<?php echo addslashes($message); ?>");
+    </script>
+<?php endif; ?>
 
 <main>
 
@@ -561,6 +573,76 @@ $student2 = "Emilia Couret Villafañe";
             ?>
         </div>
     <?php endforeach; ?>
+</section>
+
+<section id="forms">
+    <h2>Insertar y modificar datos</h2>
+
+    <p>
+        Esta sección permite insertar un nuevo contenido, modificar un contenido existente
+        y añadir una relación entre Media y Genre. Si se intenta usar un ID que no existe,
+        la aplicación mostrará una alerta de violación de integridad.
+    </p>
+
+    <h3>Insertar nuevo contenido</h3>
+
+    <form method="POST">
+        <input type="hidden" name="action" value="insert_media">
+
+        <label>Título:</label>
+        <input type="text" name="title" required>
+
+        <label>Tipo de media:</label>
+        <select name="mediaType" required>
+            <option value="Movie">Movie</option>
+            <option value="Series">Series</option>
+        </select>
+
+        <label>Duración mínima:</label>
+        <input type="number" name="minMinutes" required>
+
+        <label>Duración máxima:</label>
+        <input type="number" name="maxMinutes" required>
+
+        <label>IMDB Score:</label>
+        <input type="number" step="0.1" name="imdbScore" required>
+
+        <label>Fecha de estreno:</label>
+        <input type="date" name="releaseDate" required>
+
+        <button type="submit">Insertar contenido</button>
+    </form>
+
+    <h3>Modificar contenido existente</h3>
+
+    <form method="POST">
+        <input type="hidden" name="action" value="update_media">
+
+        <label>MediaID:</label>
+        <input type="number" name="mediaID" required>
+
+        <label>Nuevo título:</label>
+        <input type="text" name="title" required>
+
+        <label>Nuevo IMDB Score:</label>
+        <input type="number" step="0.1" name="imdbScore" required>
+
+        <button type="submit">Modificar contenido</button>
+    </form>
+
+    <h3>Insertar relación Media - Genre</h3>
+
+    <form method="POST">
+        <input type="hidden" name="action" value="insert_media_genre">
+
+        <label>MediaID:</label>
+        <input type="number" name="mediaID" required>
+
+        <label>GenreID:</label>
+        <input type="number" name="genreID" required>
+
+        <button type="submit">Insertar relación</button>
+    </form>
 </section>
 
     <section id="conclusion">
