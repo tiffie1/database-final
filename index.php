@@ -87,24 +87,6 @@ $student2 = "Emilia Couret Villafañe";
         <section id="diagrama">
             <h2>Diagramas del proyecto</h2>
 
-            <h3>Diagrama Entidad-Relación</h3>
-
-            <p>
-                El siguiente diagrama muestra la estructura general de la base de datos. La entidad
-                principal es <strong>Media</strong>, ya que representa cada película o serie dentro
-                del catálogo. Las demás entidades se conectan con Media para añadir información
-                adicional.
-            </p>
-
-            <div class="diagram">
-                <img src="assets/movie-ER.svg" alt="Diagrama Entidad-Relación">
-            </div>
-
-            <p>
-                En el diagrama Entidad-Relación, las entidades aparecen como tablas, las relaciones
-                aparecen con diamantes y las conexiones muestran cómo se relacionan los datos.
-            </p>
-
             <h3>Diagrama Relacional</h3>
 
             <p>
