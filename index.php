@@ -598,7 +598,7 @@ $student2 = "Emilia Couret Villafañe";
         </tr>
 
         <tr>
-            <td>Media_Link</td>
+            <td>Has_Link</td>
             <td><strong>MediaID PK/FK</strong>, <strong>LinkID FK UNIQUE</strong></td>
             <td>
                 MediaID referencia a Media.MediaID.<br>
@@ -608,7 +608,7 @@ $student2 = "Emilia Couret Villafañe";
         </tr>
 
         <tr>
-            <td>Media_Trailer</td>
+            <td>Has_Trailer</td>
             <td><strong>MediaID PK/FK</strong>, <strong>TrailerID FK UNIQUE</strong></td>
             <td>
                 MediaID referencia a Media.MediaID.<br>
