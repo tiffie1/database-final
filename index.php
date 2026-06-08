@@ -26,44 +26,21 @@ $student2 = "Emilia Couret Villafañe";
     </header>
 
     <nav>
-        <a href="#introduccion">Introducción</a>
         <a href="#diagrama">Diagrama E/R</a>
         <a href="#entidades">Entidades</a>
+        <a href="#atributos">Atributos</a>
         <a href="#relaciones">Relaciones</a>
+        <a href="#herencia">MediaType</a>
         <a href="#mejoras">Mejoras</a>
         <a href="#conclusion">Conclusión</a>
-        <!-- Enlace a la nueva página de consultas y gestión de datos -->
         <a href="queries.php">
             <font color='#256BEF'><u>Consultas y Datos ↗</u></font>
         </a>
     </nav>
 
+
+
     <main>
-
-        <section id="introduccion">
-            <h2>Introducción</h2>
-            <p>
-                Este proyecto presenta el diseño de una base de datos para organizar información
-                sobre películas y series. La base de datos permite guardar datos importantes como
-                el título, tipo de contenido, duración, puntuaciones, premios, fecha de estreno,
-                actores, directores, escritores, géneros, idiomas, países, enlaces y trailers.
-            </p>
-            <p>
-                Para representar esta información se creó un diagrama Entidad-Relación. Este
-                diagrama ayuda a visualizar las entidades principales del sistema y la forma en
-                que se relacionan entre sí.
-            </p>
-        </section>
-
-        <section id="objetivo">
-            <h2>Objetivo del proyecto</h2>
-            <p>
-                El objetivo principal de este proyecto es diseñar una base de datos clara y
-                organizada para un catálogo de películas y series. También se busca evitar la
-                repetición innecesaria de datos y facilitar la conversión del diagrama E/R a un
-                modelo relacional.
-            </p>
-        </section>
 
         <section id="diagrama">
             <h2>Diagrama Entidad-Relación</h2>
@@ -82,121 +59,447 @@ $student2 = "Emilia Couret Villafañe";
             </p>
         </section>
 
+        <p>
+            Este proyecto presenta el diseño de una base de datos para organizar información
+            sobre películas y series. La base de datos permite guardar datos importantes como
+            el título, tipo de contenido, duración, puntuaciones, premios, fecha de estreno,
+            actores, directores, escritores, géneros, idiomas, países, enlaces y trailers.
+        </p>
+
+        <p>
+            Para representar esta información se creó un diagrama Entidad-Relación. Este
+            diagrama ayuda a visualizar las entidades principales del sistema y la forma en
+            que se relacionan entre sí.
+        </p>
+        </section>
+
+        <section id="objetivo">
+            <h2>Objetivo del proyecto</h2>
+
+            <p>
+                El objetivo principal de este proyecto es diseñar una base de datos clara y
+                organizada para un catálogo de películas y series. También se busca evitar la
+                repetición innecesaria de datos y facilitar la conversión del diagrama E/R a un
+                modelo relacional.
+            </p>
+        </section>
+
+        <section id="diagrama">
+            <h2>Diagramas del proyecto</h2>
+
+            <h3>Diagrama Entidad-Relación</h3>
+
+            <p>
+                El siguiente diagrama muestra la estructura general de la base de datos. La entidad
+                principal es <strong>Media</strong>, ya que representa cada película o serie dentro
+                del catálogo. Las demás entidades se conectan con Media para añadir información
+                adicional.
+            </p>
+
+            <div class="diagram">
+                <img src="assets/movie-ER.svg" alt="Diagrama Entidad-Relación">
+            </div>
+
+            <p>
+                En el diagrama Entidad-Relación, las entidades aparecen como tablas, las relaciones
+                aparecen con diamantes y las conexiones muestran cómo se relacionan los datos.
+            </p>
+
+            <h3>Diagrama Relacional</h3>
+
+            <p>
+                El siguiente diagrama muestra cómo el modelo Entidad-Relación se convierte en tablas.
+                En este modelo se pueden observar las llaves primarias, llaves foráneas y las tablas
+                intermedias que representan las relaciones de muchos a muchos.
+            </p>
+
+            <div class="diagram">
+                <img src="assets/relational-model.png" alt="Diagrama Relacional">
+            </div>
+        </section>
+
         <section id="entidades">
             <h2>Entidades principales</h2>
+
             <table>
                 <tr>
                     <th>Entidad</th>
                     <th>Descripción</th>
                 </tr>
+
                 <tr>
-                    <td><tt>Media</tt></td>
+                    <td>Media</td>
                     <td>Entidad principal. Representa una película o serie dentro del catálogo.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Genre</tt></td>
+                    <td>Genre</td>
                     <td>Guarda los géneros del contenido, como drama, acción, comedia o terror.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Tag</tt></td>
+                    <td>Tag</td>
                     <td>Guarda etiquetas o palabras clave relacionadas con el contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Language</tt></td>
+                    <td>Language</td>
                     <td>Representa los idiomas disponibles o asociados al contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Country</tt></td>
+                    <td>Country</td>
                     <td>Representa los países donde el contenido está disponible o relacionado.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Actor</tt></td>
+                    <td>Actor</td>
                     <td>Guarda los actores que participan en una película o serie.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Director</tt></td>
+                    <td>Director</td>
                     <td>Guarda los directores asociados al contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Writer</tt></td>
+                    <td>Writer</td>
                     <td>Guarda los escritores o guionistas del contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>ProductionHouse</tt></td>
+                    <td>ProductionHouse</td>
                     <td>Representa las casas productoras asociadas con cada contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>MediaLinks</tt></td>
+                    <td>MediaLinks</td>
                     <td>Guarda enlaces, imágenes y poster relacionados con la película o serie.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>MediaTrailer</tt></td>
+                    <td>MediaTrailer</td>
                     <td>Guarda información sobre el trailer del contenido.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="atributos">
+            <h2>Descripción de atributos</h2>
+
+            <p>
+                Esta sección describe los atributos más importantes de las entidades principales
+                y de las relaciones del modelo relacional. Los atributos permiten identificar,
+                clasificar y conectar la información almacenada en la base de datos.
+            </p>
+
+            <h3>Atributos de la entidad Media</h3>
+
+            <table>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Descripción</th>
+                </tr>
+
+                <tr>
+                    <td>MediaID</td>
+                    <td>Llave primaria que identifica de manera única cada película o serie.</td>
+                </tr>
+
+                <tr>
+                    <td>Title</td>
+                    <td>Nombre o título del contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>MediaType</td>
+                    <td>Indica si el contenido es una película o una serie.</td>
+                </tr>
+
+                <tr>
+                    <td>MinMinutes</td>
+                    <td>Duración mínima del contenido en minutos.</td>
+                </tr>
+
+                <tr>
+                    <td>MaxMinutes</td>
+                    <td>Duración máxima del contenido en minutos.</td>
+                </tr>
+
+                <tr>
+                    <td>HiddenGemScore</td>
+                    <td>Puntuación que representa qué tan recomendado o valioso puede ser el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>ViewRating</td>
+                    <td>Clasificación del contenido según la audiencia recomendada.</td>
+                </tr>
+
+                <tr>
+                    <td>IMDbScore</td>
+                    <td>Puntuación del contenido según IMDb.</td>
+                </tr>
+
+                <tr>
+                    <td>RottenTomatoesScore</td>
+                    <td>Puntuación del contenido según Rotten Tomatoes.</td>
+                </tr>
+
+                <tr>
+                    <td>MetacriticScore</td>
+                    <td>Puntuación del contenido según Metacritic.</td>
+                </tr>
+
+                <tr>
+                    <td>AwardsReceived</td>
+                    <td>Cantidad de premios recibidos por el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>AwardsNominated</td>
+                    <td>Cantidad de nominaciones recibidas por el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>BoxOffice</td>
+                    <td>Información relacionada con ganancias o taquilla.</td>
+                </tr>
+
+                <tr>
+                    <td>ReleaseDate</td>
+                    <td>Fecha original de estreno del contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>NetflixReleaseDate</td>
+                    <td>Fecha en que el contenido fue añadido a Netflix.</td>
+                </tr>
+
+                <tr>
+                    <td>Summary</td>
+                    <td>Resumen o descripción breve del contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>IMDbVotes</td>
+                    <td>Cantidad de votos registrados en IMDb.</td>
+                </tr>
+            </table>
+
+            <h3>Atributos de entidades secundarias</h3>
+
+            <table>
+                <tr>
+                    <th>Entidad</th>
+                    <th>Atributos</th>
+                    <th>Descripción</th>
+                </tr>
+
+                <tr>
+                    <td>Genre</td>
+                    <td>GenreID, GenreName</td>
+                    <td>Guarda los géneros asociados al contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>Tag</td>
+                    <td>TagID, TagName</td>
+                    <td>Guarda etiquetas o palabras clave relacionadas con el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>Language</td>
+                    <td>LanguageID, LanguageName</td>
+                    <td>Guarda los idiomas asociados al contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>Country</td>
+                    <td>CountryID, CountryName</td>
+                    <td>Guarda los países donde el contenido está disponible o relacionado.</td>
+                </tr>
+
+                <tr>
+                    <td>Director</td>
+                    <td>DirectorID, DirectorName</td>
+                    <td>Guarda los directores del contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>Writer</td>
+                    <td>WriterID, WriterName</td>
+                    <td>Guarda los escritores o guionistas del contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>Actor</td>
+                    <td>ActorID, ActorName</td>
+                    <td>Guarda los actores que participan en el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>ProductionHouse</td>
+                    <td>ProductionHouseID, ProductionHouseName</td>
+                    <td>Guarda las casas productoras asociadas al contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>MediaLinks</td>
+                    <td>LinkID, NetflixLink, IMDbLink, Image, Poster</td>
+                    <td>Guarda enlaces e imágenes relacionados con el contenido.</td>
+                </tr>
+
+                <tr>
+                    <td>MediaTrailer</td>
+                    <td>TrailerID, IMDbTrailer, TrailerSite</td>
+                    <td>Guarda información relacionada con el trailer del contenido.</td>
+                </tr>
+                <section id="queries">
+
+                </section>
+
+
+
+            </table>
+
+            <h3>Atributos de relaciones en el modelo relacional</h3>
+
+            <p>
+                Las relaciones de muchos a muchos se convierten en tablas intermedias.
+                Estas tablas utilizan llaves foráneas para conectar las entidades principales.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Tabla de relación</th>
+                    <th>Atributos</th>
+                    <th>Descripción</th>
+                </tr>
+
+                <tr>
+                    <td>Media_Genre</td>
+                    <td>MediaID, GenreID</td>
+                    <td>Conecta cada contenido con sus géneros.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Tag</td>
+                    <td>MediaID, TagID</td>
+                    <td>Conecta cada contenido con sus etiquetas.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Language</td>
+                    <td>MediaID, LanguageID</td>
+                    <td>Conecta cada contenido con sus idiomas.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Country</td>
+                    <td>MediaID, CountryID</td>
+                    <td>Conecta cada contenido con los países relacionados.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Director</td>
+                    <td>MediaID, DirectorID</td>
+                    <td>Conecta cada contenido con sus directores.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Writer</td>
+                    <td>MediaID, WriterID</td>
+                    <td>Conecta cada contenido con sus escritores.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_Actor</td>
+                    <td>MediaID, ActorID</td>
+                    <td>Conecta cada contenido con sus actores.</td>
+                </tr>
+
+                <tr>
+                    <td>Media_ProductionHouse</td>
+                    <td>MediaID, ProductionHouseID</td>
+                    <td>Conecta cada contenido con sus casas productoras.</td>
                 </tr>
             </table>
         </section>
 
         <section id="relaciones">
             <h2>Relaciones principales</h2>
+
             <p>
                 Las relaciones indican cómo se conectan las entidades. Muchas relaciones son de
                 muchos a muchos porque una película o serie puede tener varios actores, géneros,
                 idiomas o países, y esos mismos elementos pueden aparecer en muchos contenidos.
             </p>
+
             <table>
                 <tr>
                     <th>Relación</th>
                     <th>Entidades conectadas</th>
                     <th>Explicación</th>
                 </tr>
+
                 <tr>
-                    <td><tt>Has_Genre</tt></td>
-                    <td><tt>Media</tt> y <tt>Genre</tt></td>
+                    <td>Has_Genre</td>
+                    <td>Media y Genre</td>
                     <td>Una película o serie puede tener varios géneros.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Has_Tag</tt></td>
-                    <td><tt>Media</tt> y <tt>Tag</tt></td>
+                    <td>Has_Tag</td>
+                    <td>Media y Tag</td>
                     <td>Un contenido puede tener varias etiquetas.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Acts_In</tt></td>
-                    <td><tt>Media</tt> y <tt>Actor</tt></td>
+                    <td>Acts_In</td>
+                    <td>Media y Actor</td>
                     <td>Un actor puede participar en varios contenidos y un contenido puede tener varios actores.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Directs</tt></td>
-                    <td><tt>Media</tt> y <tt>Director</tt></td>
+                    <td>Directs</td>
+                    <td>Media y Director</td>
                     <td>Relaciona una película o serie con sus directores.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Writes</tt></td>
-                    <td><tt>Media</tt> y <tt>Writer</tt></td>
+                    <td>Writes</td>
+                    <td>Media y Writer</td>
                     <td>Relaciona una película o serie con sus escritores.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Produces</tt></td>
-                    <td><tt>Media</tt> y <tt>ProductionHouse</tt></td>
+                    <td>Produces</td>
+                    <td>Media y ProductionHouse</td>
                     <td>Relaciona el contenido con las casas productoras.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Available_In</tt></td>
-                    <td><tt>Media</tt> y <tt>Country</tt></td>
+                    <td>Available_In</td>
+                    <td>Media y Country</td>
                     <td>Indica los países donde el contenido está disponible o relacionado.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Has_Language</tt></td>
-                    <td><tt>Media</tt> y <tt>Language</tt></td>
+                    <td>Has_Language</td>
+                    <td>Media y Language</td>
                     <td>Indica los idiomas asociados con el contenido.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Has_Link</tt></td>
-                    <td><tt>Media</tt> y <tt>MediaLinks</tt></td>
+                    <td>Has_Link</td>
+                    <td>Media y MediaLinks</td>
                     <td>Relaciona el contenido con sus enlaces e imágenes.</td>
                 </tr>
+
                 <tr>
-                    <td><tt>Has_Trailer</tt></td>
-                    <td><tt>Media</tt> y <tt>MediaTrailer</tt></td>
+                    <td>Has_Trailer</td>
+                    <td>Media y MediaTrailer</td>
                     <td>Relaciona el contenido con su trailer.</td>
                 </tr>
             </table>
@@ -204,12 +507,14 @@ $student2 = "Emilia Couret Villafañe";
 
         <section id="herencia">
             <h2>Uso de MediaType</h2>
+
             <p>
-                En este diseño se utiliza el atributo <strong><tt>MediaType</tt></strong> dentro de la entidad
-                <tt>Media</tt>. Este atributo permite identificar si el contenido es una película o una serie.
+                En este diseño se utiliza el atributo <strong>MediaType</strong> dentro de la entidad
+                Media. Este atributo permite identificar si el contenido es una película o una serie.
             </p>
+
             <p>
-                Se decidió usar una sola entidad llamada <tt>Media</tt> porque ambos tipos de contenido
+                Se decidió usar una sola entidad llamada Media porque ambos tipos de contenido
                 comparten los mismos atributos principales. Esto evita crear tablas separadas para
                 Movie y Series cuando no es necesario.
             </p>
@@ -217,22 +522,26 @@ $student2 = "Emilia Couret Villafañe";
 
         <section id="mejoras">
             <h2>Mejoras realizadas al modelo</h2>
+
             <ul>
-                <li>Se corrigió <tt>ProductionHouse</tt> para usar el atributo <tt>ProductionHouseName</tt>.</li>
-                <li>Se corrigió la relación Produces para conectarla con <tt>ProductionHouse</tt>.</li>
-                <li>Se completaron las relaciones <tt>Has_Link</tt> y <tt>Has_Trailer</tt>.</li>
+                <li>Se corrigió ProductionHouse para usar el atributo ProductionHouseName.</li>
+                <li>Se corrigió la relación Produces para conectarla con ProductionHouse.</li>
+                <li>Se completaron las relaciones Has_Link y Has_Trailer.</li>
                 <li>Se organizaron mejor las entidades y relaciones del diagrama.</li>
-                <li>Se mantuvo <tt>Media</tt> como entidad principal del sistema.</li>
+                <li>Se mantuvo Media como entidad principal del sistema.</li>
             </ul>
         </section>
 
+
         <section id="conclusion">
             <h2>Conclusión</h2>
+
             <p>
                 En conclusión, este modelo permite organizar de manera clara la información de
-                películas y series. La entidad <tt>Media</tt> funciona como el centro de la base de datos,
+                películas y series. La entidad Media funciona como el centro de la base de datos,
                 mientras que las demás entidades ayudan a clasificar y describir cada contenido.
             </p>
+
             <p>
                 Este diseño puede utilizarse como base para crear el modelo relacional y luego
                 implementar la base de datos en un sistema real.
