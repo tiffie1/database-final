@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2026 at 01:17 AM
+-- Generation Time: Jun 08, 2026 at 02:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,10 +30,10 @@ USE `MovieData`;
 --
 
 CREATE TABLE IF NOT EXISTS `Actor` (
-  `ActorID` int(11) NOT NULL,
+  `ActorID` int(11) NOT NULL AUTO_INCREMENT,
   `ActorName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`ActorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28537 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Actor`
@@ -277533,10 +277533,10 @@ INSERT INTO `Available_In` (`MediaID`, `CountryID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Country` (
-  `CountryID` int(11) NOT NULL,
+  `CountryID` int(11) NOT NULL AUTO_INCREMENT,
   `CountryName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`CountryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Country`
@@ -277588,10 +277588,10 @@ INSERT INTO `Country` (`CountryID`, `CountryName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Director` (
-  `DirectorID` int(11) NOT NULL,
+  `DirectorID` int(11) NOT NULL AUTO_INCREMENT,
   `DirectorName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`DirectorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7265 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Director`
@@ -301569,10 +301569,10 @@ INSERT INTO `Directs` (`MediaID`, `DirectorID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Genre` (
-  `GenreID` int(11) NOT NULL,
+  `GenreID` int(11) NOT NULL AUTO_INCREMENT,
   `GenreName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`GenreID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Genre`
@@ -481793,10 +481793,10 @@ INSERT INTO `Has_Trailer` (`MediaID`, `TrailerID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Language` (
-  `LanguageID` int(11) NOT NULL,
+  `LanguageID` int(11) NOT NULL AUTO_INCREMENT,
   `LanguageName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`LanguageID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Language`
@@ -482004,7 +482004,7 @@ INSERT INTO `Language` (`LanguageID`, `LanguageName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Media` (
-  `MediaID` int(11) NOT NULL,
+  `MediaID` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(150) DEFAULT NULL,
   `MediaType` varchar(10) DEFAULT NULL,
   `HiddenGemScore` float DEFAULT NULL,
@@ -482022,7 +482022,7 @@ CREATE TABLE IF NOT EXISTS `Media` (
   `Summary` varchar(500) DEFAULT NULL,
   `IMDbVotes` float DEFAULT NULL,
   PRIMARY KEY (`MediaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15481 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Media`
@@ -497601,13 +497601,13 @@ INSERT INTO `Media` (`MediaID`, `Title`, `MediaType`, `HiddenGemScore`, `MinMinu
 --
 
 CREATE TABLE IF NOT EXISTS `MediaLinks` (
-  `LinkID` int(11) NOT NULL,
+  `LinkID` int(11) NOT NULL AUTO_INCREMENT,
   `NetflixLink` varchar(500) DEFAULT NULL,
   `IMDBLink` varchar(500) DEFAULT NULL,
   `Image` varchar(500) DEFAULT NULL,
   `Poster` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`LinkID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15481 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `MediaLinks`
@@ -513216,11 +513216,11 @@ INSERT INTO `MediaLinks` (`LinkID`, `NetflixLink`, `IMDBLink`, `Image`, `Poster`
 --
 
 CREATE TABLE IF NOT EXISTS `MediaTrailer` (
-  `TrailerID` int(11) NOT NULL,
+  `TrailerID` int(11) NOT NULL AUTO_INCREMENT,
   `IMDbTrailer` varchar(200) DEFAULT NULL,
   `TrailerSite` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`TrailerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15481 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `MediaTrailer`
@@ -549315,10 +549315,10 @@ INSERT INTO `Produces` (`MediaID`, `ProductionHouseID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ProductionHouse` (
-  `ProductionHouseID` int(11) NOT NULL,
+  `ProductionHouseID` int(11) NOT NULL AUTO_INCREMENT,
   `ProductionHouseName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`ProductionHouseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3974 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `ProductionHouse`
@@ -553308,10 +553308,10 @@ INSERT INTO `ProductionHouse` (`ProductionHouseID`, `ProductionHouseName`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `Tag` (
-  `TagID` int(11) NOT NULL,
+  `TagID` int(11) NOT NULL AUTO_INCREMENT,
   `TagName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`TagID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=990 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `Tag`
@@ -554315,10 +554315,10 @@ INSERT INTO `Tag` (`TagID`, `TagName`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `Writer` (
-  `WriterID` int(11) NOT NULL,
+  `WriterID` int(11) NOT NULL AUTO_INCREMENT,
   `WriterName` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`WriterID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15091 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `Writer`

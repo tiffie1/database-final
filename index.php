@@ -11,6 +11,7 @@ $student2 = "Emilia Couret Villafañe";
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title><?php echo $projectName; ?></title>
@@ -667,4 +668,5 @@ $student2 = "Emilia Couret Villafañe";
 </footer>
 
 </body>
+
 </html>
