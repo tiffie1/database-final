@@ -295,10 +295,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
 
             $insertSQL = "INSERT INTO `$table` (" . implode(", ", $cols) . ") VALUES (" . implode(", ", $vals) . ")";
 
-            if (mysqli_query($conn, $insertSQL)) {
-                $insertSuccess = "¡Datos insertados! Nuevo ID en {$selectedEntity}: {$nextID}";
-            } else {
-                $insertError = mysqli_error($conn);
+            try {
+                if (mysqli_query($conn, $insertSQL)) {
+                    $insertSuccess = "¡Datos insertados! Nuevo ID en {$selectedEntity}: {$nextID}";
+                } else {
+                    $insertError = mysqli_error($conn);
+                }
+            } catch (mysqli_sql_exception $e) {
+                // Captura errores de constraints (CHECK, FOREIGN KEY, NOT NULL, etc.)
+                $insertError = "No se pudo insertar: " . $e->getMessage();
             }
         }
     }
@@ -362,13 +367,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
 
             if ($validationOk) {
                 $updateSQL = "UPDATE `{$def['table']}` SET " . implode(", ", $setParts) . " WHERE `{$def['id']}` = $safeID";
-                if (mysqli_query($conn, $updateSQL)) {
-                    $editSuccess    = "¡Registro $safeID en $editEntity actualizado correctamente!";
-                    $result         = mysqli_query($conn, "SELECT * FROM `{$def['table']}` WHERE `{$def['id']}` = $safeID LIMIT 1");
-                    $editRow        = mysqli_fetch_assoc($result);
-                    $editSearchedID = $safeID;
-                } else {
-                    $editError = mysqli_error($conn);
+                try {
+                    if (mysqli_query($conn, $updateSQL)) {
+                        $editSuccess    = "¡Registro $safeID en $editEntity actualizado correctamente!";
+                        $result         = mysqli_query($conn, "SELECT * FROM `{$def['table']}` WHERE `{$def['id']}` = $safeID LIMIT 1");
+                        $editRow        = mysqli_fetch_assoc($result);
+                        $editSearchedID = $safeID;
+                    } else {
+                        $editError = mysqli_error($conn);
+                        $editRow   = [];
+                        foreach ($def["fields"] as $field) {
+                            $editRow[$field["col"]] = isset($_POST[$field["col"]]) ? $_POST[$field["col"]] : "";
+                        }
+                        $editRow[$def["id"]] = $safeID;
+                        $editSearchedID      = $safeID;
+                    }
+                } catch (mysqli_sql_exception $e) {
+                    $editError = "No se pudo guardar: " . $e->getMessage();
                     $editRow   = [];
                     foreach ($def["fields"] as $field) {
                         $editRow[$field["col"]] = isset($_POST[$field["col"]]) ? $_POST[$field["col"]] : "";

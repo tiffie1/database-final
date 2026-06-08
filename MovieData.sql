@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2026 at 02:34 AM
+-- Generation Time: Jun 08, 2026 at 07:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -482022,7 +482022,7 @@ CREATE TABLE IF NOT EXISTS `Media` (
   `Summary` varchar(500) DEFAULT NULL,
   `IMDbVotes` float DEFAULT NULL,
   PRIMARY KEY (`MediaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15481 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ;
 
 --
 -- Dumping data for table `Media`
