@@ -393,247 +393,247 @@ $student2 = "Emilia Couret Villafañe";
             </table>
         </section>
         <section id="modelo-relacional">
-    <h2>Modelo Relacional</h2>
+            <h2>Modelo Relacional</h2>
 
-    <p>
-        El modelo relacional muestra cómo las entidades y relaciones del diagrama
-        Entidad-Relación se convierten en tablas. En este modelo se identifican
-        las llaves primarias, las llaves foráneas y las tablas intermedias necesarias
-        para representar las relaciones de muchos a muchos.
-    </p>
+            <p>
+                El modelo relacional muestra cómo las entidades y relaciones del diagrama
+                Entidad-Relación se convierten en tablas. En este modelo se identifican
+                las llaves primarias, las llaves foráneas y las tablas intermedias necesarias
+                para representar las relaciones de muchos a muchos.
+            </p>
 
-    <h3>Entidades principales</h3>
+            <h3>Entidades principales</h3>
 
-    <table>
-        <tr>
-            <th>Tabla</th>
-            <th>Atributos</th>
-            <th>Explicación</th>
-        </tr>
+            <table>
+                <tr>
+                    <th>Tabla</th>
+                    <th>Atributos</th>
+                    <th>Explicación</th>
+                </tr>
 
-        <tr>
-            <td>Media</td>
-            <td>
-                <strong>MediaID PK</strong>, Title, MediaType, MinMinutes, MaxMinutes,
-                HiddenGemScore, ViewRating, IMDbScore, RottenTomatoesScore,
-                MetacriticScore, AwardsReceived, AwardsNominated, BoxOffice,
-                ReleaseDate, NetflixReleaseDate, Summary, IMDbVotes
-            </td>
-            <td>
-                Es la tabla principal del sistema. Representa cada película o serie
-                registrada en la base de datos.
-            </td>
-        </tr>
+                <tr>
+                    <td>Media</td>
+                    <td>
+                        <strong>MediaID PK</strong>, Title, MediaType, MinMinutes, MaxMinutes,
+                        HiddenGemScore, ViewRating, IMDbScore, RottenTomatoesScore,
+                        MetacriticScore, AwardsReceived, AwardsNominated, BoxOffice,
+                        ReleaseDate, NetflixReleaseDate, Summary, IMDbVotes
+                    </td>
+                    <td>
+                        Es la tabla principal del sistema. Representa cada película o serie
+                        registrada en la base de datos.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>MediaLinks</td>
-            <td>
-                <strong>LinkID PK</strong>, NetflixLink, IMDbLink, Image, Poster
-            </td>
-            <td>
-                Almacena enlaces, imágenes y pósters relacionados con el contenido.
-            </td>
-        </tr>
+                <tr>
+                    <td>MediaLinks</td>
+                    <td>
+                        <strong>LinkID PK</strong>, NetflixLink, IMDbLink, Image, Poster
+                    </td>
+                    <td>
+                        Almacena enlaces, imágenes y pósters relacionados con el contenido.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>MediaTrailer</td>
-            <td>
-                <strong>TrailerID PK</strong>, IMDbTrailer, TrailerSite
-            </td>
-            <td>
-                Almacena la información relacionada con el trailer de una película o serie.
-            </td>
-        </tr>
+                <tr>
+                    <td>MediaTrailer</td>
+                    <td>
+                        <strong>TrailerID PK</strong>, IMDbTrailer, TrailerSite
+                    </td>
+                    <td>
+                        Almacena la información relacionada con el trailer de una película o serie.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Genre</td>
-            <td><strong>GenreID PK</strong>, GenreName</td>
-            <td>Guarda los géneros del contenido.</td>
-        </tr>
+                <tr>
+                    <td>Genre</td>
+                    <td><strong>GenreID PK</strong>, GenreName</td>
+                    <td>Guarda los géneros del contenido.</td>
+                </tr>
 
-        <tr>
-            <td>Tag</td>
-            <td><strong>TagID PK</strong>, TagName</td>
-            <td>Guarda etiquetas o palabras clave asociadas al contenido.</td>
-        </tr>
+                <tr>
+                    <td>Tag</td>
+                    <td><strong>TagID PK</strong>, TagName</td>
+                    <td>Guarda etiquetas o palabras clave asociadas al contenido.</td>
+                </tr>
 
-        <tr>
-            <td>Language</td>
-            <td><strong>LanguageID PK</strong>, LanguageName</td>
-            <td>Guarda los idiomas relacionados con el contenido.</td>
-        </tr>
+                <tr>
+                    <td>Language</td>
+                    <td><strong>LanguageID PK</strong>, LanguageName</td>
+                    <td>Guarda los idiomas relacionados con el contenido.</td>
+                </tr>
 
-        <tr>
-            <td>Country</td>
-            <td><strong>CountryID PK</strong>, CountryName</td>
-            <td>Guarda los países donde el contenido está disponible o relacionado.</td>
-        </tr>
+                <tr>
+                    <td>Country</td>
+                    <td><strong>CountryID PK</strong>, CountryName</td>
+                    <td>Guarda los países donde el contenido está disponible o relacionado.</td>
+                </tr>
 
-        <tr>
-            <td>Director</td>
-            <td><strong>DirectorID PK</strong>, DirectorName</td>
-            <td>Guarda los directores asociados al contenido.</td>
-        </tr>
+                <tr>
+                    <td>Director</td>
+                    <td><strong>DirectorID PK</strong>, DirectorName</td>
+                    <td>Guarda los directores asociados al contenido.</td>
+                </tr>
 
-        <tr>
-            <td>Writer</td>
-            <td><strong>WriterID PK</strong>, WriterName</td>
-            <td>Guarda los escritores o guionistas asociados al contenido.</td>
-        </tr>
+                <tr>
+                    <td>Writer</td>
+                    <td><strong>WriterID PK</strong>, WriterName</td>
+                    <td>Guarda los escritores o guionistas asociados al contenido.</td>
+                </tr>
 
-        <tr>
-            <td>Actor</td>
-            <td><strong>ActorID PK</strong>, ActorName</td>
-            <td>Guarda los actores que participan en el contenido.</td>
-        </tr>
+                <tr>
+                    <td>Actor</td>
+                    <td><strong>ActorID PK</strong>, ActorName</td>
+                    <td>Guarda los actores que participan en el contenido.</td>
+                </tr>
 
-        <tr>
-            <td>ProductionHouse</td>
-            <td><strong>ProductionHouseID PK</strong>, ProductionHouseName</td>
-            <td>Guarda las casas productoras asociadas al contenido.</td>
-        </tr>
-    </table>
+                <tr>
+                    <td>ProductionHouse</td>
+                    <td><strong>ProductionHouseID PK</strong>, ProductionHouseName</td>
+                    <td>Guarda las casas productoras asociadas al contenido.</td>
+                </tr>
+            </table>
 
-    <h3>Tablas intermedias para relaciones muchos a muchos</h3>
+            <h3>Tablas intermedias para relaciones muchos a muchos</h3>
 
-    <p>
-        Las siguientes tablas representan relaciones muchos a muchos. En estas tablas,
-        los atributos funcionan como llaves foráneas y también forman una llave primaria
-        compuesta. Esto evita repetir la misma relación más de una vez.
-    </p>
+            <p>
+                Las siguientes tablas representan relaciones muchos a muchos. En estas tablas,
+                los atributos funcionan como llaves foráneas y también forman una llave primaria
+                compuesta. Esto evita repetir la misma relación más de una vez.
+            </p>
 
-    <table>
-        <tr>
-            <th>Tabla de relación</th>
-            <th>Atributos</th>
-            <th>Referencias</th>
-        </tr>
+            <table>
+                <tr>
+                    <th>Tabla de relación</th>
+                    <th>Atributos</th>
+                    <th>Referencias</th>
+                </tr>
 
-        <tr>
-            <td>Has_Genre</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>GenreID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                GenreID referencia a Genre.GenreID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Has_Genre</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>GenreID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        GenreID referencia a Genre.GenreID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Has_Tag</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>TagID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                TagID referencia a Tag.TagID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Has_Tag</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>TagID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        TagID referencia a Tag.TagID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Has_Language</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>LanguageID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                LanguageID referencia a Language.LanguageID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Has_Language</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>LanguageID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        LanguageID referencia a Language.LanguageID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Available_In</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>CountryID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                CountryID referencia a Country.CountryID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Available_In</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>CountryID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        CountryID referencia a Country.CountryID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Directs</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>DirectorID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                DirectorID referencia a Director.DirectorID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Directs</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>DirectorID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        DirectorID referencia a Director.DirectorID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Writes</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>WriterID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                WriterID referencia a Writer.WriterID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Writes</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>WriterID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        WriterID referencia a Writer.WriterID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Acts_In</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>ActorID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                ActorID referencia a Actor.ActorID.
-            </td>
-        </tr>
+                <tr>
+                    <td>Acts_In</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>ActorID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        ActorID referencia a Actor.ActorID.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Produces</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>ProductionHouseID PK/FK</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                ProductionHouseID referencia a ProductionHouse.ProductionHouseID.
-            </td>
-        </tr>
-    </table>
+                <tr>
+                    <td>Produces</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>ProductionHouseID PK/FK</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        ProductionHouseID referencia a ProductionHouse.ProductionHouseID.
+                    </td>
+                </tr>
+            </table>
 
-    <h3>Relaciones uno a uno opcionales</h3>
+            <h3>Relaciones uno a uno opcionales</h3>
 
-    <p>
-        Las relaciones con enlaces y trailers se consideran uno a uno opcionales,
-        ya que un contenido puede tener enlaces o trailer asociados, pero no necesariamente
-        todos los contenidos deben tenerlos desde el inicio.
-    </p>
+            <p>
+                Las relaciones con enlaces y trailers se consideran uno a uno opcionales,
+                ya que un contenido puede tener enlaces o trailer asociados, pero no necesariamente
+                todos los contenidos deben tenerlos desde el inicio.
+            </p>
 
-    <table>
-        <tr>
-            <th>Tabla de relación</th>
-            <th>Atributos</th>
-            <th>Explicación</th>
-        </tr>
+            <table>
+                <tr>
+                    <th>Tabla de relación</th>
+                    <th>Atributos</th>
+                    <th>Explicación</th>
+                </tr>
 
-        <tr>
-            <td>Has_Link</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>LinkID FK UNIQUE</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                LinkID referencia a MediaLinks.LinkID.<br>
-                Esta tabla conecta cada contenido con sus enlaces e imágenes.
-            </td>
-        </tr>
+                <tr>
+                    <td>Has_Link</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>LinkID FK UNIQUE</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        LinkID referencia a MediaLinks.LinkID.<br>
+                        Esta tabla conecta cada contenido con sus enlaces e imágenes.
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Has_Trailer</td>
-            <td><strong>MediaID PK/FK</strong>, <strong>TrailerID FK UNIQUE</strong></td>
-            <td>
-                MediaID referencia a Media.MediaID.<br>
-                TrailerID referencia a MediaTrailer.TrailerID.<br>
-                Esta tabla conecta cada contenido con su trailer.
-            </td>
-        </tr>
-    </table>
+                <tr>
+                    <td>Has_Trailer</td>
+                    <td><strong>MediaID PK/FK</strong>, <strong>TrailerID FK UNIQUE</strong></td>
+                    <td>
+                        MediaID referencia a Media.MediaID.<br>
+                        TrailerID referencia a MediaTrailer.TrailerID.<br>
+                        Esta tabla conecta cada contenido con su trailer.
+                    </td>
+                </tr>
+            </table>
 
-    <h3>Herencia mediante MediaType</h3>
+            <h3>Herencia mediante MediaType</h3>
 
-    <p>
-        La base de datos utiliza single-table inheritance, también conocido como STI.
-        Esto significa que las películas y las series se almacenan en una misma tabla
-        llamada <strong>Media</strong>. Para distinguir entre ambos tipos de contenido,
-        se utiliza el atributo <strong>MediaType</strong>.
-    </p>
+            <p>
+                La base de datos utiliza single-table inheritance, también conocido como STI.
+                Esto significa que las películas y las series se almacenan en una misma tabla
+                llamada <strong>Media</strong>. Para distinguir entre ambos tipos de contenido,
+                se utiliza el atributo <strong>MediaType</strong>.
+            </p>
 
-    <p>
-        Si MediaType tiene el valor <strong>Movie</strong>, el registro representa una película.
-        Si MediaType tiene el valor <strong>Series</strong>, el registro representa una serie.
-        Esta estrategia es adecuada porque ambos tipos de contenido comparten los mismos
-        atributos principales en el diseño actual.
-    </p>
-</section>
+            <p>
+                Si MediaType tiene el valor <strong>Movie</strong>, el registro representa una película.
+                Si MediaType tiene el valor <strong>Series</strong>, el registro representa una serie.
+                Esta estrategia es adecuada porque ambos tipos de contenido comparten los mismos
+                atributos principales en el diseño actual.
+            </p>
+        </section>
 
         <section id="relaciones">
             <h2>Relaciones principales</h2>
@@ -725,21 +725,99 @@ $student2 = "Emilia Couret Villafañe";
                 Se decidió usar una sola entidad llamada Media porque ambos tipos de contenido
                 comparten los mismos atributos principales. Esto evita crear tablas separadas para
                 Movie y Series cuando no es necesario.
+                Este tipo de clasificación es un tipo de herencia, llamada en Inglés el <strong>Single Table Inheritence</strong>.
             </p>
         </section>
 
         <section id="mejoras">
             <h2>Mejoras realizadas al modelo</h2>
-
             <ul>
-                <li>Se corrigió ProductionHouse para usar el atributo ProductionHouseName.</li>
-                <li>Se corrigió la relación Produces para conectarla con ProductionHouse.</li>
-                <li>Se completaron las relaciones Has_Link y Has_Trailer.</li>
+                <li>Se corrigió <tt>ProductionHouse</tt> para usar el atributo <tt>ProductionHouseName</tt>.</li>
+                <li>Se corrigió la relación Produces para conectarla con <tt>ProductionHouse</tt>.</li>
+                <li>Se completaron las relaciones <tt>Has_Link</tt> y <tt>Has_Trailer</tt>.</li>
                 <li>Se organizaron mejor las entidades y relaciones del diagrama.</li>
-                <li>Se mantuvo Media como entidad principal del sistema.</li>
+                <li>Se mantuvo <tt>Media</tt> como entidad principal del sistema.</li>
             </ul>
-        </section>
 
+            <h3>Restricciones (<i>constraints</i>) añadidas a <tt>Media</tt></h3>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Columnas</th>
+                    <th>Regla</th>
+                </tr>
+                <tr>
+                    <td><tt>chk_imdb_score</tt></td>
+                    <td><tt>IMDbScore</tt></td>
+                    <td>Debe estar entre 0 y 10.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_rt_score</tt></td>
+                    <td><tt>RottenTomatoesScore</tt></td>
+                    <td>Debe estar entre 0 y 100.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_metacritic_score</tt></td>
+                    <td><tt>MetacriticScore</tt></td>
+                    <td>Debe estar entre 0 y 100.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_hidden_gem_score</tt></td>
+                    <td><tt>HiddenGemScore</tt></td>
+                    <td>Debe estar entre 0 y 10.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_awards</tt></td>
+                    <td><tt>AwardsNominated</tt>, <tt>AwardsReceived</tt></td>
+                    <td>Los premios nominados no pueden ser menos que los recibidos.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_awards_positive</tt></td>
+                    <td><tt>AwardsReceived</tt>, <tt>AwardsNominated</tt></td>
+                    <td>Ambos valores deben ser mayores o iguales a 0.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_boxoffice_positive</tt></td>
+                    <td><tt>BoxOffice</tt></td>
+                    <td>Debe ser mayor o igual a 0.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_votes_positive</tt></td>
+                    <td><tt>IMDbVotes</tt></td>
+                    <td>Debe ser mayor o igual a 0.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_runtime_order</tt></td>
+                    <td><tt>MinMinutes</tt>, <tt>MaxMinutes</tt></td>
+                    <td>La duración mínima no puede superar la máxima.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_runtime_positive</tt></td>
+                    <td><tt>MinMinutes</tt>, <tt>MaxMinutes</tt></td>
+                    <td>Ambos valores deben ser mayores o iguales a 0.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_media_type</tt></td>
+                    <td><tt>MediaType</tt></td>
+                    <td>Solo acepta <tt>movie</tt> o <tt>series</tt>.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_view_rating</tt></td>
+                    <td><tt>ViewRating</tt></td>
+                    <td>Solo acepta clasificaciones estándar: <tt>g</tt>, <tt>pg</tt>, <tt>pg-13</tt>, <tt>r</tt>, <tt>nc-17</tt>, <tt>tv-y</tt>, <tt>tv-y7</tt>, <tt>tv-g</tt>, <tt>tv-pg</tt>, <tt>tv-14</tt>, <tt>tv-ma</tt>, <tt>nr</tt>, <tt>ur</tt>.</td>
+                </tr>
+                <tr>
+                    <td><tt>chk_netflix_date</tt></td>
+                    <td><tt>NetflixReleaseDate</tt></td>
+                    <td>No puede ser anterior al 1 de enero de 1997 (fundación de Netflix).</td>
+                </tr>
+            </table>
+
+            <p>
+            Igualmente, se puso restricciones de <tt>UNIQUE</tt> a las entidades con nombres únicos 
+            (<tt>Country</tt>, <tt>Genre</tt>, <tt>Language</tt>, <tt>IMDbLink</tt>, etc.).
+            </p>
+        </section>
 
         <section id="conclusion">
             <h2>Conclusión</h2>
