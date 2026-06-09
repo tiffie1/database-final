@@ -757,6 +757,80 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
             </form>
         </section>
 
+        <!-- SECCIÓN: INSERTAR RELACIONES -->
+<section id="insertar-relaciones">
+    <h2>Insertar relación entre tablas</h2>
+
+    <p>
+        Esta sección permite insertar datos en las tablas de relación. Estas tablas conectan
+        entidades usando llaves foráneas. Si se utiliza un ID que no existe o se repite una
+        relación, el sistema mostrará un mensaje de error sin romper la página.
+    </p>
+
+    <?php if (!empty($relationWarnings)): ?>
+        <div class="validation-error">
+            <strong>Errores de validación:</strong>
+            <ul>
+                <?php foreach ($relationWarnings as $w): ?>
+                    <li><?php echo htmlspecialchars($w); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($relationSuccess !== null): ?>
+        <p class="success-message">✔ <?php echo htmlspecialchars($relationSuccess); ?></p>
+    <?php endif; ?>
+
+    <?php if ($relationError !== null): ?>
+        <p class="error-message">✘ <?php echo htmlspecialchars($relationError); ?></p>
+    <?php endif; ?>
+
+    <form method="POST" action="" id="relationForm">
+        <input type="hidden" name="action" value="insert_relation">
+
+        <label for="relationSelect"><strong>Relación:</strong></label>
+        <select name="relation" id="relationSelect">
+            <?php foreach ($relations as $key => $def): ?>
+                <option value="<?php echo $key; ?>"
+                    <?php echo ($selectedRelation === $key) ? "selected" : ""; ?>>
+                    <?php echo htmlspecialchars($key); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <br><br>
+
+        <?php foreach ($relations as $key => $def): ?>
+            <div id="relation-fields-<?php echo $key; ?>"
+                style="display:<?php echo ($selectedRelation === $key) ? 'block' : 'none'; ?>;">
+
+                <table>
+                    <?php foreach ($def["fields"] as $field): ?>
+                        <tr>
+                            <td>
+                                <label>
+                                    <?php echo htmlspecialchars($field["label"]); ?>
+                                    <span class="dbtype">(FK: <?php echo htmlspecialchars($field["ref"]); ?>)</span>
+                                </label>
+                            </td>
+                            <td>
+                                <input
+                                    type="number"
+                                    name="<?php echo htmlspecialchars($field["col"]); ?>"
+                                    min="1"
+                                    required>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        <?php endforeach; ?>
+
+        <button type="submit">Insertar relación</button>
+    </form>
+</section>
+
         <!-- SECCIÓN 3: MODIFICAR REGISTROS -->
         <section id="editar">
             <h2>Modificar registro existente</h2>
