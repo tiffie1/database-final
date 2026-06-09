@@ -447,6 +447,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
 }
 
 /* =========================================================
+ * MANEJO: INSERTAR RELACIÓN
+ * ========================================================= */
+$relationSuccess  = null;
+$relationError    = null;
+$relationWarnings = [];
+$selectedRelation = array_key_first($relations);
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "insert_relation") {
+    if (isset($_POST["relation"]) && array_key_exists($_POST["relation"], $relations)) {
+        $selectedRelation = $_POST["relation"];
+        $relationDef = $relations[$selectedRelation];
+
+        $cols = [];
+        $vals = [];
+        $validationOk = true;
+
+        foreach ($relationDef["fields"] as $field) {
+            $col = $field["col"];
+            $value = isset($_POST[$col]) ? trim($_POST[$col]) : "";
+
+            if ($value === "" || !preg_match('/^\d+$/', $value)) {
+                $relationWarnings[] = "$col debe ser un ID numérico válido.";
+                $validationOk = false;
+            }
+
+            $cols[] = "`$col`";
+            $vals[] = (int)$value;
+        }
+
+        if ($validationOk) {
+            $table = $relationDef["table"];
+
+            $insertRelationSQL = "INSERT INTO `$table` (" . implode(", ", $cols) . ")
+                                  VALUES (" . implode(", ", $vals) . ")";
+
+            if (mysqli_query($conn, $insertRelationSQL)) {
+                $relationSuccess = "Relación insertada correctamente en $selectedRelation.";
+            } else {
+                $relationError = "No se pudo insertar la relación. Puede ser por un ID inexistente, una relación duplicada o una violación de integridad: " . mysqli_error($conn);
+            }
+        }
+    }
+}
+
+/* =========================================================
  * MANEJO: BUSCAR Y EDITAR REGISTRO
  * ========================================================= */
 $editRow        = null;
