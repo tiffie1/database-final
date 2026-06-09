@@ -2,6 +2,12 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+/*==================================================================
+   Esto evita que mysqli rompa la página con errores fatales.
+   En vez de crashear, la página puede mostrar un mensaje de error.
+*================================================================== */
+mysqli_report(MYSQLI_REPORT_OFF);
+
 $conn = mysqli_connect("localhost", "root", "", "MovieData");
 
 if (!$conn) {
@@ -104,6 +110,94 @@ $entities = [
         "id"     => "WriterID",
         "fields" => [["col" => "WriterName", "label" => "Nombre del Escritor", "type" => "text", "dbtype" => "VARCHAR(150)", "required" => true]]
     ],
+];
+
+/* =========================================================
+ * DEFINICIÓN DE RELACIONES
+ * ---------------------------------------------------------
+ * Estas tablas conectan entidades entre sí usando llaves
+ * foráneas. La mayoría representan relaciones muchos a muchos.
+ * ========================================================= */
+$relations = [
+    "Has_Genre" => [
+        "table" => "Has_Genre",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "GenreID", "label" => "ID de Genre", "ref" => "Genre.GenreID"]
+        ]
+    ],
+
+    "Has_Tag" => [
+        "table" => "Has_Tag",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "TagID", "label" => "ID de Tag", "ref" => "Tag.TagID"]
+        ]
+    ],
+
+    "Has_Language" => [
+        "table" => "Has_Language",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "LanguageID", "label" => "ID de Language", "ref" => "Language.LanguageID"]
+        ]
+    ],
+
+    "Available_In" => [
+        "table" => "Available_In",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "CountryID", "label" => "ID de Country", "ref" => "Country.CountryID"]
+        ]
+    ],
+
+    "Directs" => [
+        "table" => "Directs",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "DirectorID", "label" => "ID de Director", "ref" => "Director.DirectorID"]
+        ]
+    ],
+
+    "Writes" => [
+        "table" => "Writes",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "WriterID", "label" => "ID de Writer", "ref" => "Writer.WriterID"]
+        ]
+    ],
+
+    "Acts_In" => [
+        "table" => "Acts_In",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "ActorID", "label" => "ID de Actor", "ref" => "Actor.ActorID"]
+        ]
+    ],
+
+    "Produces" => [
+        "table" => "Produces",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "ProductionHouseID", "label" => "ID de ProductionHouse", "ref" => "ProductionHouse.ProductionHouseID"]
+        ]
+    ],
+
+    "Has_Link" => [
+        "table" => "Has_Link",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "LinkID", "label" => "ID de MediaLinks", "ref" => "MediaLinks.LinkID"]
+        ]
+    ],
+
+    "Has_Trailer" => [
+        "table" => "Has_Trailer",
+        "fields" => [
+            ["col" => "MediaID", "label" => "ID de Media", "ref" => "Media.MediaID"],
+            ["col" => "TrailerID", "label" => "ID de MediaTrailer", "ref" => "MediaTrailer.TrailerID"]
+        ]
+    ]
 ];
 
 /* =========================================================
@@ -250,16 +344,16 @@ $queries = [
 
     [
         "label" => "Query 5: Contenidos con puntuación mayor al promedio",
-        "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDBScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
+        "descripcion" => "Esta consulta usa una subconsulta para mostrar contenidos cuyo IMDbScore es mayor al promedio general. También muestra el promedio usado para la comparación.",
         "sql" => "
         SELECT 
             Title, 
             MediaType, 
-            IMDBScore,
-            (SELECT ROUND(AVG(IMDBScore), 2) FROM Media) AS AverageIMDbScore
+            IMDbScore,
+            (SELECT ROUND(AVG(IMDbScore), 2) FROM Media) AS AverageIMDbScore
         FROM Media
-        WHERE IMDBScore > (
-            SELECT AVG(IMDBScore)
+        WHERE IMDbScore > (
+            SELECT AVG(IMDbScore)
             FROM Media
         )
         LIMIT 10
