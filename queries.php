@@ -990,6 +990,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["
         });
 
         /* =========================================================
+ * JS: DROPDOWN DE RELACIONES
+ * ========================================================= */
+const relationSelect = document.getElementById('relationSelect');
+const relationKeys = <?php echo json_encode(array_keys($relations)); ?>;
+
+function switchRelation(selectedKey) {
+    relationKeys.forEach(key => {
+        const div = document.getElementById('relation-fields-' + key);
+
+        if (!div) return;
+
+        const inputs = div.querySelectorAll('input');
+
+        if (key === selectedKey) {
+            div.style.display = 'block';
+            inputs.forEach(input => input.removeAttribute('disabled'));
+        } else {
+            div.style.display = 'none';
+            inputs.forEach(input => input.setAttribute('disabled', 'disabled'));
+        }
+    });
+}
+
+if (relationSelect) {
+    switchRelation(relationSelect.value);
+
+    relationSelect.addEventListener('change', function() {
+        switchRelation(this.value);
+    });
+}
+
+        /* =========================================================
          * JS: CONFIRMACIÓN PARA DROP / TRUNCATE
          * ========================================================= */
         document.getElementById('freeQueryForm').addEventListener('submit', function(e) {
