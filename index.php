@@ -1,5 +1,5 @@
 <?php
-//require_once "queries.php";
+
 
 $projectName = "Diseño de Base de Datos para Películas y Series";
 $course = "COMP4018-030";
@@ -66,11 +66,7 @@ $student2 = "Emilia Couret Villafañe";
             actores, directores, escritores, géneros, idiomas, países, enlaces y trailers.
         </p>
 
-        <p>
-            Para representar esta información se creó un diagrama Entidad-Relación. Este
-            diagrama ayuda a visualizar las entidades principales del sistema y la forma en
-            que se relacionan entre sí.
-        </p>
+    
         </section>
 
         <section id="objetivo">
