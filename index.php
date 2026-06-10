@@ -31,7 +31,7 @@ $student2 = "Emilia Couret Villafañe";
         <a href="#modelo-relacional">Modelo Relacional</a>
         <a href="#relaciones">Relaciones</a>
         <a href="#herencia">MediaType</a>
-        <a href="#mejoras">Mejoras</a>
+        <a href="#restricciones">Restricciones</a>
         <a href="#conclusion">Conclusión</a>
         <a href="queries.php">
             <font color='#256BEF'><u>Consultas y Datos ↗</u></font>
@@ -66,7 +66,7 @@ $student2 = "Emilia Couret Villafañe";
             actores, directores, escritores, géneros, idiomas, países, enlaces y trailers.
         </p>
 
-    
+
         </section>
 
         <section id="objetivo">
@@ -388,6 +388,26 @@ $student2 = "Emilia Couret Villafañe";
                 </tr>
             </table>
         </section>
+        <section id="normalizacion">
+            <h2>Normalización</h2>
+            <p>
+                En el proceso de normalización, se creó tablas (entidades) separadas para obtener
+                atomicidad (Genre, Writer, Tag, Actor, etc.). También, se notó que atributos como
+                <tt>NetflixLink</tt> determinan otros atributos (ej.: <tt>Title</tt>).
+                Para mantener BCNF, se movió estos atributos a sus propias tablas.
+            </p>
+            <p>
+                Igualmente, se separó el atributo de <tt>Runtime</tt> en dos
+                (<tt>MinMinutes</tt> y <tt>MinMinutes</tt>) para facilitar operaciones con queries.
+            </p>
+            <p>
+                Finalmente, se normalizó valores de string a ser minúscula y cambiar el formato
+                de fechas
+                en atributos como <tt>ReleaseDate</tt> a seguir el mismo
+                formato (<tt>DD-MM-YYYY</tt>).
+            </p>
+        </section>
+
         <section id="modelo-relacional">
             <h2>Modelo Relacional</h2>
 
@@ -725,17 +745,8 @@ $student2 = "Emilia Couret Villafañe";
             </p>
         </section>
 
-        <section id="mejoras">
-            <h2>Mejoras realizadas al modelo</h2>
-            <ul>
-                <li>Se corrigió <tt>ProductionHouse</tt> para usar el atributo <tt>ProductionHouseName</tt>.</li>
-                <li>Se corrigió la relación Produces para conectarla con <tt>ProductionHouse</tt>.</li>
-                <li>Se completaron las relaciones <tt>Has_Link</tt> y <tt>Has_Trailer</tt>.</li>
-                <li>Se organizaron mejor las entidades y relaciones del diagrama.</li>
-                <li>Se mantuvo <tt>Media</tt> como entidad principal del sistema.</li>
-            </ul>
-
-            <h3>Restricciones (<i>constraints</i>) añadidas a <tt>Media</tt></h3>
+        <section id="restricciones">
+            <h2>Restricciones (<i>constraints</i>) añadidas a <tt>Media</tt></h2>
             <table>
                 <tr>
                     <th>Nombre</th>
@@ -810,25 +821,11 @@ $student2 = "Emilia Couret Villafañe";
             </table>
 
             <p>
-            Igualmente, se puso restricciones de <tt>UNIQUE</tt> a las entidades con nombres únicos 
-            (<tt>Country</tt>, <tt>Genre</tt>, <tt>Language</tt>, <tt>IMDbLink</tt>, etc.).
+                Igualmente, se puso restricciones de <tt>UNIQUE</tt> a las entidades con nombres únicos
+                (<tt>Country</tt>, <tt>Genre</tt>, <tt>Language</tt>, <tt>IMDbLink</tt>, etc.).
             </p>
         </section>
 
-        <section id="conclusion">
-            <h2>Conclusión</h2>
-
-            <p>
-                En conclusión, este modelo permite organizar de manera clara la información de
-                películas y series. La entidad Media funciona como el centro de la base de datos,
-                mientras que las demás entidades ayudan a clasificar y describir cada contenido.
-            </p>
-
-            <p>
-                Este diseño puede utilizarse como base para crear el modelo relacional y luego
-                implementar la base de datos en un sistema real.
-            </p>
-        </section>
 
     </main>
 
