@@ -398,7 +398,7 @@ $student2 = "Emilia Couret Villafañe";
             </p>
             <p>
                 Igualmente, se separó el atributo de <tt>Runtime</tt> en dos
-                (<tt>MinMinutes</tt> y <tt>MinMinutes</tt>) para facilitar operaciones con queries.
+                (<tt>MinMinutes</tt> y <tt>MaxMinutes</tt>) para facilitar operaciones con queries.
             </p>
             <p>
                 Finalmente, se normalizó valores de string a ser minúscula y cambiar el formato
@@ -634,21 +634,6 @@ $student2 = "Emilia Couret Villafañe";
                 </tr>
             </table>
 
-            <h3>Herencia mediante MediaType</h3>
-
-            <p>
-                La base de datos utiliza single-table inheritance, también conocido como STI.
-                Esto significa que las películas y las series se almacenan en una misma tabla
-                llamada <strong>Media</strong>. Para distinguir entre ambos tipos de contenido,
-                se utiliza el atributo <strong>MediaType</strong>.
-            </p>
-
-            <p>
-                Si MediaType tiene el valor <strong>Movie</strong>, el registro representa una película.
-                Si MediaType tiene el valor <strong>Series</strong>, el registro representa una serie.
-                Esta estrategia es adecuada porque ambos tipos de contenido comparten los mismos
-                atributos principales en el diseño actual.
-            </p>
         </section>
 
         <section id="relaciones">
