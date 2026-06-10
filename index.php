@@ -398,7 +398,7 @@ $student2 = "Emilia Couret Villafañe";
             </p>
             <p>
                 Igualmente, se separó el atributo de <tt>Runtime</tt> en dos
-                (<tt>MinMinutes</tt> y <tt>MinMinutes</tt>) para facilitar operaciones con queries.
+                (<tt>MinMinutes</tt> y <tt>MaxMinutes</tt>) para facilitar operaciones con queries.
             </p>
             <p>
                 Finalmente, se normalizó valores de string a ser minúscula y cambiar el formato
